@@ -36,10 +36,6 @@ if (project.enableUsingKotlin.toBoolean()) {
     apply plugin: 'org.jetbrains.kotlin.jvm'
 }
 
-if (project.enableUsingScala.toBoolean()) {
-    apply plugin: 'scala'
-}
-
 version = "${project.modVersion}"
 group = "${project.modGroupId}"
 archivesBaseName = "${project.modArchivesName}"
@@ -88,16 +84,6 @@ dependencies {
     if (project.enableUsingMysteriumLib.toBoolean()) {
         implementation "curse.maven:MysteriumLib-645051:3963822"
     }
-
-    implementation "club.someoneice.pineapplepsychic:pineapple-psychic:${project.psychic_version}"
-    implementation "club.someoneice.togocup.pineapple_tag:pineapple-tag:${project.tags_version}"
-    implementation "club.someoneice.togocup.recipebook:PineappleRecipeBook:${project.recipe_book_version}"
-
-    implementation "maven.modrinth:notenoughitems-unofficial:${project.nei_version}-GTNH"
-    implementation "maven.modrinth:codechickencore-unofficial:${project.cc_version}"
-    implementation "maven.modrinth:codechickenlib-unofficial:${project.cc_version}"
-
-    implementation fileTree(dir: 'lib', includes: ['*.jar'])
 }
 
 processResources {
