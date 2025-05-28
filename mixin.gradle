@@ -1,0 +1,80 @@
+
+// === === === === === === Mixin Path Start === === === === === ===
+
+def mixinConfig = "mixins.${modId}.json"
+def refMap = "mixins.${modId}.refmap.json"
+
+if (!project.embedMixin.toBoolean()) {
+    version += "-mixinless"
+}
+
+runClient {
+    args("--tweakClass", "org.spongepowered.asm.launch.MixinTweaker")
+}
+
+runServer {
+    args("--tweakClass", "org.spongepowered.asm.launch.MixinTweaker")
+}
+
+
+repositories {
+    maven {
+        url 'https://jitpack.io'
+    }
+}
+
+
+dependencies {
+    if (project.embedMixin.toBoolean()) {
+        includeCompile("com.github.LegacyModdingMC.UniMixins:unimixins-all-1.7.10:0.1.15:dev")
+    } else {
+        implementation("com.github.LegacyModdingMC.UniMixins:unimixins-all-1.7.10:0.1.15:dev")
+    }
+}
+
+configurations.implementation.dependencies.each {
+    if (it instanceof ExternalModuleDependency) {
+        it.exclude module: "SpongeMixins"
+        it.exclude module: "SpongePoweredMixin"
+        it.exclude module: "00gasstation-mc1.7.10"
+        it.exclude module: "gtnhmixins"
+    }
+}
+
+def srgFile = "${tasks.compileJava.temporaryDir}/mcpSrg.srg"
+def refMapFile = "${tasks.compileJava.temporaryDir}/$refMap"
+
+def srgFileF = new File(srgFile)
+if (!srgFileF.exists()) {
+    srgFileF.createNewFile()
+}
+
+jar {
+    manifest {
+        attributes (
+                'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
+                'MixinConfigs': "$mixinConfig",
+                'FMLCorePlugin': 'io.github.legacymoddingmc.unimixins.example.ExampleCore',
+                'ForceLoadAsMod': 'true',
+                'FMLCorePluginContainsFMLMod': 'true',
+        )
+    }
+
+    from refMapFile;
+}
+
+tasks.compileJava.options.compilerArgs += ["-AreobfSrgFile=${tasks.reobf.srg}", "-AsrgFile=${srgFile}", "-ArefMapFile=${refMapFile}"];
+
+reobf {
+    addExtraSrgFile srgFile
+}
+
+processResources {
+    inputs.property "mixin_refmap", project.version
+
+    filesMatching("$mixinConfig") {
+        expand 'mixin_refmap': refMap
+    }
+}
+
+// === === === === === === Mixin Path End === === === === === ===
