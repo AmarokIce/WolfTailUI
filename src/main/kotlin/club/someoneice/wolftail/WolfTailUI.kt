@@ -16,7 +16,7 @@ import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
 @Suppress("unused")
-@Mod(modid = WolfTailUI.ID, modLanguage = "kotlin")
+@Mod(modid = WolfTailUI.ID)
 class WolfTailUI {
     companion object {
         const val ID = "wolftail"
