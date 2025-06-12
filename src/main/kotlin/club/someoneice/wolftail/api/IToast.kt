@@ -1,5 +1,6 @@
 package club.someoneice.wolftail.api
 
+import club.someoneice.wolftail.style.StyleBasedToast
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.client.gui.Gui
 import net.minecraft.item.Item
@@ -8,11 +9,11 @@ import net.minecraft.util.ResourceLocation
 
 interface IToast {
     companion object {
-        fun create(title: IChatComponent, text: IChatComponent, style: IUIStyle, item: Item): IToast {
+        fun create(title: IChatComponent, text: IChatComponent, style: StyleBasedToast, item: Item): IToast {
             return object: IToast {
                 override fun getToastTitle(): IChatComponent = title
                 override fun getToastText(): IChatComponent = text
-                override fun getUIStyle(): IUIStyle = style
+                override fun getUIStyle(): StyleBasedToast = style
                 override fun byItemStack(): Boolean = true
                 override fun getToastIcon(): ResourceLocation {
                     val uid = GameRegistry.findUniqueIdentifierFor(item)
@@ -21,12 +22,12 @@ interface IToast {
             }
         }
 
-        fun create(title: IChatComponent, text: IChatComponent, style: IUIStyle,
+        fun create(title: IChatComponent, text: IChatComponent, style: StyleBasedToast,
                    rl: ResourceLocation, u: Int, v: Int, w: Int, h: Int): IToast {
             return object: IToast {
                 override fun getToastTitle(): IChatComponent = title
                 override fun getToastText(): IChatComponent = text
-                override fun getUIStyle(): IUIStyle = style
+                override fun getUIStyle(): StyleBasedToast = style
                 override fun getToastIcon(): ResourceLocation = rl
                 override fun bindTexture(gui: Gui, x: Int, y: Int) {
                     gui.drawTexturedModalRect(x, y, u, v, w, h)
@@ -47,9 +48,9 @@ interface IToast {
      * The toast background.
      *
      * @see DefaultUIStyle
-     * @see club.someoneice.wolftail.ui.BasedToastUIStyle
+     * @see club.someoneice.wolftail.style.StyleBasedToast
      */
-    fun getUIStyle(): IUIStyle
+    fun getUIStyle(): StyleBasedToast
 
     /**
      * Mark the toast's icon is an ItemStack.

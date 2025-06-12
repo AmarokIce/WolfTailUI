@@ -2,6 +2,7 @@ package club.someoneice.wolftail.api
 
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
+import org.lwjgl.util.Rectangle
 
 interface IUIStyle {
     /**
@@ -9,10 +10,12 @@ interface IUIStyle {
      */
     fun getTexture(): ResourceLocation
 
+    fun getUIRange(): Rectangle
+
     /**
-     * Render the background. Remember, you should setup GL11.
+     * Render the background. Remember, you should set up GL11.
      *
-     * @see club.someoneice.wolftail.ui.BasedToastUIStyle.renderBackground BasedToastUIStyle#renderBackground
+     * @see club.someoneice.wolftail.style.StyleBasedToast.renderBackground BasedToastUIStyle#renderBackground
      */
-    fun renderBackground(gui: Gui, x: Int, y: Int, w: Int, h: Int)
+    fun renderBackground(gui: Gui, x: Int, y: Int)
 }

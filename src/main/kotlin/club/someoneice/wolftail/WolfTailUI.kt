@@ -1,19 +1,22 @@
 package club.someoneice.wolftail
 
-import club.someoneice.wolftail.api.DefaultUIStyle
 import club.someoneice.wolftail.api.IToast
-import club.someoneice.wolftail.render.ToastGUI
+import club.someoneice.wolftail.ui.WGuiBased
+import club.someoneice.wolftail.ui.WGuiToast
+import club.someoneice.wolftail.wiget.WButton
+import club.someoneice.wolftail.wiget.WString
 import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
 import cpw.mods.fml.common.gameevent.InputEvent
 import cpw.mods.fml.common.gameevent.TickEvent
-import net.minecraft.init.Items
-import net.minecraft.util.ChatComponentText
+import net.minecraft.client.Minecraft
 import net.minecraftforge.common.MinecraftForge
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import org.lwjgl.input.Keyboard
+import java.awt.Color
 
 @Suppress("unused")
 @Mod(modid = WolfTailUI.ID)
@@ -22,14 +25,10 @@ class WolfTailUI {
         const val ID = "wolftail"
         val LOG: Logger = LogManager.getLogger(ID)
 
-        private val TOAST_SET = HashSet<ToastGUI>()
+        internal val TOAST_SET = ArrayList<WGuiToast>()
 
         fun addToast(toast: IToast) {
-            this.TOAST_SET.add(ToastGUI(toast))
-        }
-
-        private fun toastTick(index: Int, it: ToastGUI) {
-            it.tick(index)
+            this.TOAST_SET.add(WGuiToast(toast))
         }
     }
 
@@ -43,18 +42,31 @@ class WolfTailUI {
         FMLCommonHandler.instance().bus().register(this)
     }
 
+    // TODO: Debug.
     @SubscribeEvent
     fun testingChat(event: InputEvent.KeyInputEvent) {
-        addToast(IToast.create(ChatComponentText("Test Tile"), ChatComponentText("Test text"), DefaultUIStyle.TOAST_DARK_UI, Items.pumpkin_pie))
+        if (Keyboard.getEventKey() == Keyboard.KEY_R) {
+            Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title = "wolftail_testUI", size = Pair(200, 180), lightStyle = true) {
+                override fun start() {
+                    this.addWidget(WString("The string of 'Hello' from WolfTailUI!", Pair(5, 5)))
+                    this.addWidget(WButton("And a button!", Pair(5, 20), Pair(95, 40), false) {})
+
+                    this.addWidget(WString("The string of 'Hello' from WolfTailUI!", Pair(13, 180 - 15), color = Color(64, 76, 94), shadow = Color.WHITE))
+                    this.addWidget(WButton("And a button!", Pair(200 - 95, 180 - 40), Pair(200 - 5, 180 - 20), true) {})
+                }
+            })
+        }
     }
 
     @SubscribeEvent
-    fun onClientTick(event: TickEvent.ClientTickEvent) {
-        if (TOAST_SET.isEmpty() || event.phase != TickEvent.Phase.START) {
+    fun onClientTick(event: TickEvent.RenderTickEvent) {
+        if (TOAST_SET.isEmpty() || event.phase == TickEvent.Phase.START) {
             return
         }
 
-        TOAST_SET.forEachIndexed(::toastTick)
-        TOAST_SET.removeAll(ToastGUI::isDead)
+        WGuiToast.setUp()
+
+        TOAST_SET.forEach(WGuiToast::tick)
+        TOAST_SET.removeAll(WGuiToast::isDead)
     }
 }

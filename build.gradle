@@ -55,12 +55,6 @@ repositories {
     mavenCentral()
 
     maven {
-        name "Amarok Maven"
-        url "http://maven.snowlyicewolf.club/"
-        allowInsecureProtocol true
-    }
-
-    maven {
         name "Curse Maven"
         url "https://cursemaven.com"
     }

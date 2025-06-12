@@ -1,1 +1,3 @@
-# Example Mod Skeleton for Minecraft Forge 1.7.10
+Wolf Tail UI
+<img align="left" alt="Logo" width="100" src="https://github.com/AmarokIce/WolfTailUI/assets/" height="96">
+=======
