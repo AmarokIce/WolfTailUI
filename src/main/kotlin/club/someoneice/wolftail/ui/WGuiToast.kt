@@ -9,6 +9,7 @@ import net.minecraft.client.gui.Gui
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.RenderHelper
 import net.minecraft.client.renderer.entity.RenderItem
+import net.minecraft.client.resources.I18n
 import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12
@@ -31,8 +32,8 @@ class WGuiToast(val toast: IToast): Gui() {
 
         style.renderBackground(this, x, y)
 
-        mc.fontRenderer.drawString(this.toast.getToastTitle().formattedText, x + 30, y + 7, -256)
-        mc.fontRenderer.drawString(this.toast.getToastText().formattedText, x + 30, y + 18, -1)
+        mc.fontRenderer.drawString(I18n.format(this.toast.getToastTitle()), x + 30, y + 7, -256)
+        mc.fontRenderer.drawString(I18n.format(this.toast.getToastText()), x + 30, y + 18, -1)
 
         if (this.toast.byItemStack()) {
             renderItemStack(x + 8, y + 8)

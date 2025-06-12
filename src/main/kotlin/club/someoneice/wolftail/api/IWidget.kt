@@ -46,7 +46,7 @@ interface IWidget {
      * @param x The gui render position's 'zero' x.
      * @param y The gui render position's 'zero' y.
      *
-     * @see club.someoneice.wolftail.style.StyleBasedToast.renderBackground BasedToastUIStyle#renderBackground
+     * @see club.someoneice.wolftail.style.StyleToast.renderBackground BasedToastUIStyle#renderBackground
      */
     fun render(gui: Gui, mouseX: Int, mouseY: Int, x: Int, y: Int)
 

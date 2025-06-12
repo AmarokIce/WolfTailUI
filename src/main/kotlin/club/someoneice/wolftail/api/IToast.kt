@@ -1,19 +1,18 @@
 package club.someoneice.wolftail.api
 
-import club.someoneice.wolftail.style.StyleBasedToast
+import club.someoneice.wolftail.style.StyleToast
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.client.gui.Gui
 import net.minecraft.item.Item
-import net.minecraft.util.IChatComponent
 import net.minecraft.util.ResourceLocation
 
 interface IToast {
     companion object {
-        fun create(title: IChatComponent, text: IChatComponent, style: StyleBasedToast, item: Item): IToast {
+        fun create(title: String, text: String, style: StyleToast, item: Item): IToast {
             return object: IToast {
-                override fun getToastTitle(): IChatComponent = title
-                override fun getToastText(): IChatComponent = text
-                override fun getUIStyle(): StyleBasedToast = style
+                override fun getToastTitle(): String = title
+                override fun getToastText(): String = text
+                override fun getUIStyle(): StyleToast = style
                 override fun byItemStack(): Boolean = true
                 override fun getToastIcon(): ResourceLocation {
                     val uid = GameRegistry.findUniqueIdentifierFor(item)
@@ -22,12 +21,12 @@ interface IToast {
             }
         }
 
-        fun create(title: IChatComponent, text: IChatComponent, style: StyleBasedToast,
+        fun create(title: String, text: String, style: StyleToast,
                    rl: ResourceLocation, u: Int, v: Int, w: Int, h: Int): IToast {
             return object: IToast {
-                override fun getToastTitle(): IChatComponent = title
-                override fun getToastText(): IChatComponent = text
-                override fun getUIStyle(): StyleBasedToast = style
+                override fun getToastTitle(): String = title
+                override fun getToastText(): String = text
+                override fun getUIStyle(): StyleToast = style
                 override fun getToastIcon(): ResourceLocation = rl
                 override fun bindTexture(gui: Gui, x: Int, y: Int) {
                     gui.drawTexturedModalRect(x, y, u, v, w, h)
@@ -36,8 +35,8 @@ interface IToast {
         }
     }
 
-    fun getToastTitle(): IChatComponent
-    fun getToastText(): IChatComponent
+    fun getToastTitle(): String
+    fun getToastText(): String
 
     /**
      * The icon resource path. If it is an ItemStack, return the ItemStack's ResourceID (modid:itemRegisterName).
@@ -48,9 +47,9 @@ interface IToast {
      * The toast background.
      *
      * @see DefaultUIStyle
-     * @see club.someoneice.wolftail.style.StyleBasedToast
+     * @see club.someoneice.wolftail.style.StyleToast
      */
-    fun getUIStyle(): StyleBasedToast
+    fun getUIStyle(): StyleToast
 
     /**
      * Mark the toast's icon is an ItemStack.

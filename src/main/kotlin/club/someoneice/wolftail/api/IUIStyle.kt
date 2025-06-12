@@ -15,7 +15,7 @@ interface IUIStyle {
     /**
      * Render the background. Remember, you should set up GL11.
      *
-     * @see club.someoneice.wolftail.style.StyleBasedToast.renderBackground BasedToastUIStyle#renderBackground
+     * @see club.someoneice.wolftail.style.StyleToast.renderBackground BasedToastUIStyle#renderBackground
      */
     fun renderBackground(gui: Gui, x: Int, y: Int)
 }

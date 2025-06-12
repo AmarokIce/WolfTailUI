@@ -7,7 +7,6 @@ import club.someoneice.wolftail.style.StyleSlot
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.inventory.Container
 import net.minecraft.inventory.Slot
-import org.lwjgl.input.Keyboard
 import org.lwjgl.input.Mouse
 import org.lwjgl.opengl.GL11
 

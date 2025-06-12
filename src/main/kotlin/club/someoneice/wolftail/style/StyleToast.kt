@@ -9,12 +9,12 @@ import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.Rectangle
 
-open class StyleBasedToast(val startAt: Int): IUIStyle {
+open class StyleToast(val startAt: Int): IUIStyle {
     companion object {
-        val TOAST_DARK_UI = StyleBasedToast(0)
-        val TOAST_LIGHT_UI = StyleBasedToast(32)
-        val TOAST_T_DARK_UI = StyleBasedToast(64)
-        val TOAST_T_LIGHT_UI = StyleBasedToast(96)
+        val TOAST_DARK_UI = StyleToast(0)
+        val TOAST_LIGHT_UI = StyleToast(32)
+        val TOAST_T_DARK_UI = StyleToast(64)
+        val TOAST_T_LIGHT_UI = StyleToast(96)
     }
 
     private val range = Rectangle(96, startAt, 160, 32)

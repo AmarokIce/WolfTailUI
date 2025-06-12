@@ -1,22 +1,15 @@
 package club.someoneice.wolftail
 
 import club.someoneice.wolftail.api.IToast
-import club.someoneice.wolftail.ui.WGuiBased
 import club.someoneice.wolftail.ui.WGuiToast
-import club.someoneice.wolftail.wiget.WButton
-import club.someoneice.wolftail.wiget.WString
 import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
-import cpw.mods.fml.common.gameevent.InputEvent
 import cpw.mods.fml.common.gameevent.TickEvent
-import net.minecraft.client.Minecraft
 import net.minecraftforge.common.MinecraftForge
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import org.lwjgl.input.Keyboard
-import java.awt.Color
 
 @Suppress("unused")
 @Mod(modid = WolfTailUI.ID)
@@ -42,21 +35,21 @@ class WolfTailUI {
         FMLCommonHandler.instance().bus().register(this)
     }
 
-    // TODO: Debug.
-    @SubscribeEvent
-    fun testingChat(event: InputEvent.KeyInputEvent) {
-        if (Keyboard.getEventKey() == Keyboard.KEY_R) {
-            Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title = "wolftail_testUI", size = Pair(200, 180), lightStyle = true) {
-                override fun start() {
-                    this.addWidget(WString("The string of 'Hello' from WolfTailUI!", Pair(5, 5)))
-                    this.addWidget(WButton("And a button!", Pair(5, 20), Pair(95, 40), false) {})
-
-                    this.addWidget(WString("The string of 'Hello' from WolfTailUI!", Pair(13, 180 - 15), color = Color(64, 76, 94), shadow = Color.WHITE))
-                    this.addWidget(WButton("And a button!", Pair(200 - 95, 180 - 40), Pair(200 - 5, 180 - 20), true) {})
-                }
-            })
-        }
-    }
+//    The Debug Method.
+//    @SubscribeEvent
+//    fun debugTestUIEvent(event: InputEvent.KeyInputEvent) {
+//        if (Keyboard.getEventKey() == Keyboard.KEY_R) {
+//            Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title = "wolftail_testUI", size = Pair(200, 180), lightStyle = true) {
+//                override fun start() {
+//                    this.addWidget(WString("The string of 'Hello' from WolfTailUI!", Pair(5, 5)))
+//                    this.addWidget(WButton("And a button!", Pair(5, 20), Pair(95, 40), false) {})
+//
+//                    this.addWidget(WString("The string of 'Hello' from WolfTailUI!", Pair(13, 180 - 15), color = Color(64, 76, 94), shadow = Color.WHITE))
+//                    this.addWidget(WButton("And a button!", Pair(200 - 95, 180 - 40), Pair(200 - 5, 180 - 20), true) {})
+//                }
+//            })
+//        }
+//    }
 
     @SubscribeEvent
     fun onClientTick(event: TickEvent.RenderTickEvent) {
