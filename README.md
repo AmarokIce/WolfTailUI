@@ -1,11 +1,11 @@
 Wolf Tail UI
-<img align="right" alt="Logo" width="96" height="108" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Icon.png">
+<img align="right" alt="Logo" width="128" height="144" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Icon.png">
 =======
 ### The game UI library for Minecraft 1.7.10.
 
 <div align=center>
 
-<img align="center" alt="Logo" width="256" height="128" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">
+<img align="center" alt="Logo" width="384" height="192" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">
 
 #### [MCMOD]() - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/wolftailui/) - [Modrinth](https://modrinth.com/mod/wolftailui/)
 
