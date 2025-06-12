@@ -27,14 +27,9 @@ Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title= "wolftail_tes
 WolfTailUI.addToast(IToast.create("Hello", "World", StyleToast.TOAST_DARK_UI, Items.pumpkin_pie))
 ```
 
-## Find out
+## Thanks
 
-This project use color in default is [Nord](https://github.com/nordtheme/nord). thanks NordTheme create this color palette.
-
-<img align="left" alt="UI" width="400" height="360" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/TheUI.png">
-<img align="right" alt="Logo" width="348" height="192" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">
-
-
+This project used color from [Nord](https://github.com/nordtheme/nord). Thanks NordTheme create this color palette.
 
 ## Sponsorship
 
