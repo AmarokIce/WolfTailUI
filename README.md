@@ -32,7 +32,10 @@ WolfTailUI.addToast(IToast.create("Hello", "World", StyleToast.TOAST_DARK_UI, It
 This project use color in default is [Nord](https://github.com/nordtheme/nord). thanks NordTheme create this color palette.
 
 <img align="left" alt="UI" width="400" height="360" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/TheUI.png">
-<img align="right" alt="Logo" width="256" height="128" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">
+<img align="right" alt="Logo" width="348" height="192" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">
+
+
+
 ## Sponsorship
 
 [![](https://github.com/AmarokIce/AmarokIce/blob/main/img/AiFaDian.png)](https://ifdian.net/a/AmarokIce)
