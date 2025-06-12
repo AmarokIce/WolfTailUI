@@ -3,13 +3,8 @@ Wolf Tail UI
 =======
 ### The game UI library for Minecraft 1.7.10.
 
-<div align=center>
-
-<img align="center" alt="Logo" width="384" height="192" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">
-
 #### [MCMOD]() - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/wolftailui/) - [Modrinth](https://modrinth.com/mod/wolftailui/)
 
-</div>
 
 ## Quick Start
 **Import**:  
@@ -36,8 +31,8 @@ WolfTailUI.addToast(IToast.create("Hello", "World", StyleToast.TOAST_DARK_UI, It
 
 This project use color in default is [Nord](https://github.com/nordtheme/nord). thanks NordTheme create this color palette.
 
-<img align="center" alt="UI" width="400" height="360" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/TheUI.png">
-
+<img align="left" alt="UI" width="400" height="360" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/TheUI.png">
+<img align="right" alt="Logo" width="256" height="128" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">
 ## Sponsorship
 
 [![](https://github.com/AmarokIce/AmarokIce/blob/main/img/AiFaDian.png)](https://ifdian.net/a/AmarokIce)
