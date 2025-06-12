@@ -1,5 +1,5 @@
 Wolf Tail UI
-<img align="left" alt="Logo" width="96" height="108" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Icon.png">
+<img align="right" alt="Logo" width="96" height="108" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Icon.png">
 =======
 ### The game UI library for Minecraft 1.7.10.
 
@@ -35,7 +35,7 @@ WolfTailUI.addToast(IToast.create("Hello", "World", StyleToast.TOAST_DARK_UI, It
 This project use color in default is [Nord](https://github.com/nordtheme/nord). thanks NordTheme create this color palette.
 
 
-|<img align="left" alt="Logo" width="256" height="128" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/TheUI.png">|<img align="left" alt="Logo" width="256" height="128" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">|
+|<img align="left" alt="Logo" width="200" height="180" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/TheUI.png">|<img align="left" alt="Logo" width="256" height="128" src="https://github.com/AmarokIce/WolfTailUI/blob/main/image/Toasts.png">|
 |:---:|:---:|
 
 ## Sponsorship
