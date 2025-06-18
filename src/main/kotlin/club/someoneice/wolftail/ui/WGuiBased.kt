@@ -12,8 +12,9 @@ open class WGuiBased(private val sizeOfTexture: Pair<Int, Int>, private val styl
 
     private val widgets = ArrayList<IWidget>()
 
-    fun addWidget(widget: IWidget) {
+    fun addWidget(widget: IWidget): WGuiBased {
         this.widgets.add(widget)
+        return this
     }
 
     fun removeWidget(index: Int) {
