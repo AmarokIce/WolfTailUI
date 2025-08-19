@@ -8,7 +8,12 @@ import net.minecraft.client.resources.I18n
 import net.minecraft.util.ResourceLocation
 import java.awt.Color
 
-open class WString(private val title: String, private val startPos: Pair<Int, Int>, val color: Color = Color.WHITE, private val shadow: Color = Color.BLACK): IWidget {
+open class WString(
+    private val title: String,
+    private val startPos: Pair<Int, Int>,
+    val color: Color = Color.WHITE,
+    private val shadow: Color = Color.BLACK
+) : IWidget {
     override fun getTexture(): ResourceLocation = ResourceLocation(WolfTailUI.ID, "label_string_$title")
     override fun wightStartAt(): Pair<Int, Int> = startPos
 

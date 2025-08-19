@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation
 interface IToast {
     companion object {
         fun create(title: String, text: String, style: StyleToast, item: Item): IToast {
-            return object: IToast {
+            return object : IToast {
                 override fun getToastTitle(): String = title
                 override fun getToastText(): String = text
                 override fun getUIStyle(): StyleToast = style
@@ -21,9 +21,11 @@ interface IToast {
             }
         }
 
-        fun create(title: String, text: String, style: StyleToast,
-                   rl: ResourceLocation, u: Int, v: Int, w: Int, h: Int): IToast {
-            return object: IToast {
+        fun create(
+            title: String, text: String, style: StyleToast,
+            rl: ResourceLocation, u: Int, v: Int, w: Int, h: Int
+        ): IToast {
+            return object : IToast {
                 override fun getToastTitle(): String = title
                 override fun getToastText(): String = text
                 override fun getUIStyle(): StyleToast = style
