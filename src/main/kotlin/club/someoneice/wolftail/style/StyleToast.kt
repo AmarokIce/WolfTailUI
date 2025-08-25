@@ -23,15 +23,16 @@ open class StyleToast(val startAt: Int) : IUIStyle {
     override fun getTexture(): ResourceLocation = texture
     override fun getUIRange(): Rectangle = range
 
-    override fun renderBackground(gui: Gui, x: Int, y: Int) {
+    override fun renderBackground(pGui: Gui, pPosX: Int, pPosY: Int) {
         clearColor()
         GL11.glEnable(GL11.GL_TEXTURE_2D)
         Minecraft.getMinecraft().textureManager.bindTexture(this.getTexture())
         GL11.glDisable(GL11.GL_LIGHTING)
-        this.renderTexture(gui, x, y)
+        this.renderTexture(pGui, pPosX, pPosY)
     }
 
-    open fun renderTexture(gui: Gui, x: Int, y: Int) {
-        gui.drawTexturedModalRect(x, y, 96, startAt, 160, 32)
+    open fun renderTexture(pGui: Gui, pPosX: Int, pPosY: Int) {
+        val rangeIn = this.getUIRange()
+        pGui.drawTexturedModalRect(pPosX, pPosY, rangeIn.x, rangeIn.y, rangeIn.width, rangeIn.height)
     }
 }

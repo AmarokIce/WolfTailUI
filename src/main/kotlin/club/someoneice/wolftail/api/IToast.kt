@@ -8,30 +8,30 @@ import net.minecraft.util.ResourceLocation
 
 interface IToast {
     companion object {
-        fun create(title: String, text: String, style: StyleToast, item: Item): IToast {
+        fun create(pTitle: String, pText: String, pStyle: StyleToast, pIconItem: Item): IToast {
             return object : IToast {
-                override fun getToastTitle(): String = title
-                override fun getToastText(): String = text
-                override fun getUIStyle(): StyleToast = style
+                override fun getToastTitle(): String = pTitle
+                override fun getToastText(): String = pText
+                override fun getUIStyle(): StyleToast = pStyle
                 override fun byItemStack(): Boolean = true
                 override fun getToastIcon(): ResourceLocation {
-                    val uid = GameRegistry.findUniqueIdentifierFor(item)
+                    val uid = GameRegistry.findUniqueIdentifierFor(pIconItem)
                     return ResourceLocation(uid.modId, uid.name)
                 }
             }
         }
 
         fun create(
-            title: String, text: String, style: StyleToast,
-            rl: ResourceLocation, u: Int, v: Int, w: Int, h: Int
+            pTitle: String, pText: String, pStyle: StyleToast,
+            pIconRL: ResourceLocation, pU: Int, pV: Int, pW: Int, pH: Int
         ): IToast {
             return object : IToast {
-                override fun getToastTitle(): String = title
-                override fun getToastText(): String = text
-                override fun getUIStyle(): StyleToast = style
-                override fun getToastIcon(): ResourceLocation = rl
-                override fun bindTexture(gui: Gui, x: Int, y: Int) {
-                    gui.drawTexturedModalRect(x, y, u, v, w, h)
+                override fun getToastTitle(): String = pTitle
+                override fun getToastText(): String = pText
+                override fun getUIStyle(): StyleToast = pStyle
+                override fun getToastIcon(): ResourceLocation = pIconRL
+                override fun bindTexture(pGui: Gui, pPosX: Int, pPosY: Int) {
+                    pGui.drawTexturedModalRect(pPosX, pPosY, pU, pV, pW, pH)
                 }
             }
         }
@@ -67,5 +67,5 @@ interface IToast {
      * @see IToast.byItemStack
      * @see IToast.getToastIcon
      */
-    fun bindTexture(gui: Gui, x: Int, y: Int) {}
+    fun bindTexture(pGui: Gui, pPosX: Int, pPosY: Int) {}
 }
