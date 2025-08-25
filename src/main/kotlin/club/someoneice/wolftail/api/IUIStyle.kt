@@ -13,9 +13,13 @@ interface IUIStyle {
     fun getUIRange(): Rectangle
 
     /**
-     * Render the background. Remember, you should set up GL11.
+     * Render the background. Remember, you should set up GL11 by your self.
+     *
+     * @param pGui The gui will render now.
+     * @param pPosX The pos of X will render.
+     * @param pPosY The pos of Y will render.
      *
      * @see club.someoneice.wolftail.style.StyleToast.renderBackground BasedToastUIStyle#renderBackground
      */
-    fun renderBackground(gui: Gui, x: Int, y: Int)
+    fun renderBackground(pGui: Gui, pPosX: Int, pPosY: Int)
 }

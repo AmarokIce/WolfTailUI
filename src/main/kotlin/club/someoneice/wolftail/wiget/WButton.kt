@@ -1,7 +1,9 @@
 package club.someoneice.wolftail.wiget
 
 import club.someoneice.wolftail.WolfTailUI
-import club.someoneice.wolftail.api.IWidget
+import club.someoneice.wolftail.api.IUIStyle
+import club.someoneice.wolftail.api.IWidgetFunction
+import club.someoneice.wolftail.api.IWidgetWithStyle
 import club.someoneice.wolftail.getMC
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
@@ -17,7 +19,7 @@ open class WButton(
     private val endAt: Pair<Int, Int>,
     private val lightStyle: Boolean = false,
     private val whenClicked: () -> Unit
-) : IWidget {
+) : IWidgetFunction, IWidgetWithStyle {
     private val texture: DynamicTexture
     private val resourceID: ResourceLocation
     private val sizeOf = Pair(this.endAt.first - this.startAt.first, this.endAt.second - this.startAt.second)
@@ -37,11 +39,10 @@ open class WButton(
         this.texture = DynamicTexture(imageBackground)
 
         this.resourceID = Minecraft.getMinecraft().textureManager
-            .getDynamicTextureLocation(this.getTexture().toString(), texture)
+            .getDynamicTextureLocation(this.textureID.toString(), texture)
     }
 
     override fun canBeClick(): Boolean = true
-    override fun getTexture(): ResourceLocation = this.textureID
 
     override fun wightStartAt(): Pair<Int, Int> = startAt
     override fun wightEndAt(): Pair<Int, Int> = endAt
@@ -52,6 +53,9 @@ open class WButton(
         }
 
         whenClicked()
+    }
+
+    override fun onPassed(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiY: Int, pGuiX: Int) {
     }
 
     override fun render(gui: Gui, mouseX: Int, mouseY: Int, x: Int, y: Int) {
@@ -87,6 +91,10 @@ open class WButton(
             startY + sizeOf.second / 2 - height / 2,
             Color.WHITE.rgb
         )
+    }
+
+    override fun getStyle(): IUIStyle {
+        TODO("Not finish yet")
     }
 
     companion object {
