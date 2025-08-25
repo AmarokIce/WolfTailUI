@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11
 import org.lwjgl.util.Rectangle
 
-open class StyleToast(val startAt: Int): IUIStyle {
+open class StyleToast(val startAt: Int) : IUIStyle {
     companion object {
         val TOAST_DARK_UI = StyleToast(0)
         val TOAST_LIGHT_UI = StyleToast(32)

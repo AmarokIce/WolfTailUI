@@ -11,7 +11,13 @@ import net.minecraft.util.ResourceLocation
 import java.awt.Color
 import java.awt.image.BufferedImage
 
-open class WButton(private val title: String, private val startAt: Pair<Int, Int>, private val endAt: Pair<Int, Int>, private val lightStyle: Boolean = false, private val whenClicked: () -> Unit): IWidget {
+open class WButton(
+    private val title: String,
+    private val startAt: Pair<Int, Int>,
+    private val endAt: Pair<Int, Int>,
+    private val lightStyle: Boolean = false,
+    private val whenClicked: () -> Unit
+) : IWidget {
     private val texture: DynamicTexture
     private val resourceID: ResourceLocation
     private val sizeOf = Pair(this.endAt.first - this.startAt.first, this.endAt.second - this.startAt.second)
@@ -53,7 +59,14 @@ open class WButton(private val title: String, private val startAt: Pair<Int, Int
 
         val startY = if (this.isInRange(mouseX, mouseY, x, y)) sizeOf.second + 1 else 0
 
-        gui.drawTexturedModalRect(x + this.wightStartAt().first, y + this.wightStartAt().second, 0, startY, this.sizeOf.first, this.sizeOf.second)
+        gui.drawTexturedModalRect(
+            x + this.wightStartAt().first,
+            y + this.wightStartAt().second,
+            0,
+            startY,
+            this.sizeOf.first,
+            this.sizeOf.second
+        )
 
         drawString(gui, mouseX, mouseY, x, y)
     }
@@ -67,7 +80,13 @@ open class WButton(private val title: String, private val startAt: Pair<Int, Int
         val startX = x + this.wightStartAt().first
         val startY = y + this.wightStartAt().second
 
-        gui.drawString(getMC().fontRenderer, data, startX + (this.sizeOf.first / 2 - width / 2), startY + sizeOf.second / 2 - height / 2, Color.WHITE.rgb)
+        gui.drawString(
+            getMC().fontRenderer,
+            data,
+            startX + (this.sizeOf.first / 2 - width / 2),
+            startY + sizeOf.second / 2 - height / 2,
+            Color.WHITE.rgb
+        )
     }
 
     companion object {

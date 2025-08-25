@@ -14,7 +14,8 @@ import java.awt.image.BufferedImage
 /**
  * The title is the name for the ui in generator.
  */
-class StyleGameUI(private val title: String, private val sizeOf: Pair<Int, Int>, private val light: Boolean = false): IUIStyle {
+class StyleGameUI(private val title: String, private val sizeOf: Pair<Int, Int>, private val light: Boolean = false) :
+    IUIStyle {
     private val texture: DynamicTexture
     private val resourceID: ResourceLocation
 

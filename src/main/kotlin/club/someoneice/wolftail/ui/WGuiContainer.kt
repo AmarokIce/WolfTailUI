@@ -10,8 +10,17 @@ import net.minecraft.inventory.Slot
 import org.lwjgl.input.Mouse
 import org.lwjgl.opengl.GL11
 
-open class WGuiContainer(private val container: Container, private val sizeOfTexture: Pair<Int, Int>, private val style: StyleGameUI) : GuiContainer(container) {
-    constructor(container: Container, title: String, size: Pair<Int, Int> = Pair(176, 166), lightStyle: Boolean = false): this(container, size, StyleGameUI(title, size, lightStyle))
+open class WGuiContainer(
+    private val container: Container,
+    private val sizeOfTexture: Pair<Int, Int>,
+    private val style: StyleGameUI
+) : GuiContainer(container) {
+    constructor(
+        container: Container,
+        title: String,
+        size: Pair<Int, Int> = Pair(176, 166),
+        lightStyle: Boolean = false
+    ) : this(container, size, StyleGameUI(title, size, lightStyle))
 
     private val widgets = ArrayList<IWidget>()
 
@@ -74,7 +83,7 @@ open class WGuiContainer(private val container: Container, private val sizeOfTex
     }
 
     fun renderSlot() {
-        container.inventorySlots.map { it as Slot } .forEach {
+        container.inventorySlots.map { it as Slot }.forEach {
             StyleSlot.renderAt(this, it.xDisplayPosition, it.yDisplayPosition)
         }
     }

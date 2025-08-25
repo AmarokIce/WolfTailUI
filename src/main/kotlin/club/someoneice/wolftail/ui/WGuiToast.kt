@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12
 
 @SideOnly(Side.CLIENT)
-class WGuiToast(val toast: IToast): Gui() {
+class WGuiToast(val toast: IToast) : Gui() {
     var lessAliveTick = MAX_TICK
     var speed = 25
 
@@ -63,7 +63,7 @@ class WGuiToast(val toast: IToast): Gui() {
 
         val rl = this.toast.getToastIcon()
         val stack = GameRegistry.findItemStack(rl.resourceDomain, rl.resourcePath, 1)
-        val icon = stack.iconIndex
+        stack.iconIndex
 
         GL11.glEnable(GL12.GL_RESCALE_NORMAL)
         RenderHelper.enableGUIStandardItemLighting()
@@ -73,7 +73,7 @@ class WGuiToast(val toast: IToast): Gui() {
         GL11.glDisable(GL12.GL_RESCALE_NORMAL)
     }
 
-    private fun getXFactor(): Double  {
+    private fun getXFactor(): Double {
         return if (lessAliveTick < speed) {
             lessAliveTick / speed.toDouble()
         } else if (lessAliveTick > 200 - speed) {

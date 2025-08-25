@@ -7,10 +7,18 @@ Wolf Tail UI
 
 
 ## Quick Start
-**Import**:  
-TODO: Please use CurseMaven or Modrinth Maven.
+**Import**:
 
-**Simple GuiScreen:**  
+```gradle
+maven {
+    name "kTT MavenSnapshots"
+    url "https://maven.kessokuteatime.work/snapshots"
+}
+
+implementation "club.someoneice.wolftail:WolfTailUI:0.0.1"
+```
+
+**Simple GuiScreen:**
 ```kotlin
 Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title= "wolftail_testUI", size = Pair(200, 180), lightStyle = true) {
     override fun start() {
@@ -22,7 +30,7 @@ Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title= "wolftail_tes
 })
 ```
 
-**Poas a toast:**  
+**Poas a toast:**
 ```kotlin
 WolfTailUI.addToast(IToast.create("Hello", "World", StyleToast.TOAST_DARK_UI, Items.pumpkin_pie))
 ```

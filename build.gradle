@@ -171,3 +171,5 @@ artifacts {
     archives deobfJar
     archives sourcesJar
 }
+
+apply from: "publishing.gradle"

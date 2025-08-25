@@ -7,8 +7,11 @@ import club.someoneice.wolftail.style.StyleGameUI
 import net.minecraft.client.gui.GuiScreen
 import org.lwjgl.opengl.GL11
 
-open class WGuiBased(private val sizeOfTexture: Pair<Int, Int>, private val style: StyleGameUI): GuiScreen() {
-    constructor(title: String, size: Pair<Int, Int> = Pair(176, 166), lightStyle: Boolean = false): this(size, StyleGameUI(title, size, lightStyle))
+open class WGuiBased(private val sizeOfTexture: Pair<Int, Int>, private val style: StyleGameUI) : GuiScreen() {
+    constructor(title: String, size: Pair<Int, Int> = Pair(176, 166), lightStyle: Boolean = false) : this(
+        size,
+        StyleGameUI(title, size, lightStyle)
+    )
 
     private val widgets = ArrayList<IWidget>()
 
