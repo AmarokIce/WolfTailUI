@@ -9,27 +9,27 @@ import java.awt.Color
 import java.awt.image.BufferedImage
 
 object StyleSlot {
-    val COLOR = Color(76, 86, 106)
+  val COLOR = Color(76, 86, 106)
 
-    private val texture: DynamicTexture
-    private val resourceID: ResourceLocation
+  private val texture: DynamicTexture
+  private val resourceID: ResourceLocation
 
-    init {
-        val imageBackground = BufferedImage(256, 256, BufferedImage.TYPE_INT_ARGB)
-        val g2d = imageBackground.createGraphics()
-        g2d.color = COLOR
-        g2d.fillRect(0, 0, 16, 16)
-        g2d.dispose()
+  init {
+    val imageBackground = BufferedImage(256, 256, BufferedImage.TYPE_INT_ARGB)
+    val g2d = imageBackground.createGraphics()
+    g2d.color = COLOR
+    g2d.fillRect(0, 0, 16, 16)
+    g2d.dispose()
 
-        this.texture = DynamicTexture(imageBackground)
+    this.texture = DynamicTexture(imageBackground)
 
-        this.resourceID = Minecraft.getMinecraft().textureManager
-            .getDynamicTextureLocation("wolftailui:slot", texture)
-    }
+    this.resourceID = Minecraft.getMinecraft().textureManager
+      .getDynamicTextureLocation("wolftailui:slot", texture)
+  }
 
-    fun renderAt(gui: Gui, x: Int, y: Int) {
-        clearColor()
-        Minecraft.getMinecraft().renderEngine.bindTexture(resourceID)
-        gui.drawTexturedModalRect(x, y, 0, 0, 16, 16)
-    }
+  fun renderAt(gui: Gui, x: Int, y: Int) {
+    clearColor()
+    Minecraft.getMinecraft().renderEngine.bindTexture(resourceID)
+    gui.drawTexturedModalRect(x, y, 0, 0, 16, 16)
+  }
 }

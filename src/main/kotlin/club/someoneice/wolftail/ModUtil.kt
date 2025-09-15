@@ -7,12 +7,12 @@ private val mc = Minecraft.getMinecraft()
 
 fun getMC() = mc
 fun clearColor() {
-    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
+  GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
 }
 
 /**
  * Just a sandman for pass the function.
  */
 fun sandman() {
-    /* Do nothing. */
+  /* Do nothing. */
 }

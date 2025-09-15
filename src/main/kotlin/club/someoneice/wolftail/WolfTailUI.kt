@@ -14,26 +14,26 @@ import org.apache.logging.log4j.Logger
 @Suppress("unused")
 @Mod(modid = WolfTailUI.ID)
 class WolfTailUI {
-    companion object {
-        const val ID = "wolftail"
-        val LOG: Logger = LogManager.getLogger(ID)
+  companion object {
+    const val ID = "wolftail"
+    val LOG: Logger = LogManager.getLogger(ID)
 
-        internal val TOAST_SET = ArrayList<WGuiToast>()
+    internal val TOAST_SET = ArrayList<WGuiToast>()
 
-        fun addToast(toast: IToast) {
-            this.TOAST_SET.add(WGuiToast(toast))
-        }
+    fun addToast(toast: IToast) {
+      this.TOAST_SET.add(WGuiToast(toast))
     }
+  }
 
-    @Mod.EventHandler
-    fun init(event: FMLInitializationEvent) {
-        LOG.info("Welcome to use WolfTail UI for Minecraft 1.7.10!")
-        LOG.info("Github: https://github.com/AmarokIce/WolfTailUI/")
-        LOG.info("Issues: https://github.com/AmarokIce/WolfTailUI/issues")
+  @Mod.EventHandler
+  fun init(event: FMLInitializationEvent) {
+    LOG.info("Welcome to use WolfTail UI for Minecraft 1.7.10!")
+    LOG.info("Github: https://github.com/AmarokIce/WolfTailUI/")
+    LOG.info("Issues: https://github.com/AmarokIce/WolfTailUI/issues")
 
-        MinecraftForge.EVENT_BUS.register(this)
-        FMLCommonHandler.instance().bus().register(this)
-    }
+    MinecraftForge.EVENT_BUS.register(this)
+    FMLCommonHandler.instance().bus().register(this)
+  }
 
 //    The Debug Method.
 //    @SubscribeEvent
@@ -51,15 +51,15 @@ class WolfTailUI {
 //        }
 //    }
 
-    @SubscribeEvent
-    fun onClientTick(event: TickEvent.RenderTickEvent) {
-        if (TOAST_SET.isEmpty() || event.phase == TickEvent.Phase.START) {
-            return
-        }
-
-        WGuiToast.setUp()
-
-        TOAST_SET.forEach(WGuiToast::tick)
-        TOAST_SET.removeAll(WGuiToast::isDead)
+  @SubscribeEvent
+  fun onClientTick(event: TickEvent.RenderTickEvent) {
+    if (TOAST_SET.isEmpty() || event.phase == TickEvent.Phase.START) {
+      return
     }
+
+    WGuiToast.setUp()
+
+    TOAST_SET.forEach(WGuiToast::tick)
+    TOAST_SET.removeAll(WGuiToast::isDead)
+  }
 }
