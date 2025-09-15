@@ -2,6 +2,7 @@ package club.someoneice.wolftail
 
 import net.minecraft.client.Minecraft
 import org.lwjgl.opengl.GL11
+import org.lwjgl.util.Rectangle
 
 private val mc = Minecraft.getMinecraft()
 
@@ -10,9 +11,10 @@ fun clearColor() {
   GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
 }
 
-/**
- * Just a sandman for pass the function.
- */
-fun sandman() {
-  /* Do nothing. */
+fun getStartAtByRec(rec: Rectangle): Pair<Int, Int> {
+  return Pair(rec.x, rec.y)
+}
+
+fun getEndAtByRec(rec: Rectangle): Pair<Int, Int> {
+  return Pair(rec.x + rec.width, rec.y + rec.height)
 }

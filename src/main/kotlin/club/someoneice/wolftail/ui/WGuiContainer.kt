@@ -1,6 +1,6 @@
 package club.someoneice.wolftail.ui
 
-import club.someoneice.wolftail.api.IUIStyle
+import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
 import club.someoneice.wolftail.api.IWidgetFunction
 import club.someoneice.wolftail.clearColor
@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11
 open class WGuiContainer(
   private val container: Container,
   private val sizeOfTexture: Pair<Int, Int>,
-  private val style: IUIStyle
+  private val style: IStyle
 ) : GuiContainer(container) {
   constructor(
     container: Container,
@@ -45,7 +45,7 @@ open class WGuiContainer(
 
     GL11.glDisable(GL11.GL_DEPTH_TEST)
     GL11.glEnable(GL11.GL_TEXTURE_2D)
-    style.renderBackground(this, x, y)
+    style.render(this, x, y)
 
     this.render(mouseX, mouseY)
 
@@ -67,7 +67,7 @@ open class WGuiContainer(
 
     val x: Int = (this.width - this.sizeOfTexture.first) / 2
     val y: Int = (this.height - this.sizeOfTexture.second) / 2
-    this.widgets.filter { it -> it is IWidgetFunction }.forEach {
+    this.widgets.filter { it is IWidgetFunction }.forEach {
       (it as IWidgetFunction).onClick(this, mouseX, mouseY, x, y)
     }
   }

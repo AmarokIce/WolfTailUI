@@ -1,9 +1,7 @@
 package club.someoneice.wolftail.api
 
 import club.someoneice.wolftail.style.StyleToast
-import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.client.gui.Gui
-import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
 
 interface IToast {

@@ -6,7 +6,10 @@ import club.someoneice.wolftail.style.StyleGameUI
 import net.minecraft.client.gui.GuiScreen
 import org.lwjgl.opengl.GL11
 
-abstract class WGuiBased(private val sizeOfTexture: Pair<Int, Int>, private val style: StyleGameUI) : GuiScreen() {
+abstract class WGuiBased(
+  private val sizeOfTexture: Pair<Int, Int>,
+  private val style: StyleGameUI
+) : GuiScreen() {
   constructor(title: String, size: Pair<Int, Int> = Pair(176, 166), lightStyle: Boolean = false) : this(
     size,
     StyleGameUI(title, size, lightStyle)
@@ -40,7 +43,7 @@ abstract class WGuiBased(private val sizeOfTexture: Pair<Int, Int>, private val 
 
     GL11.glDisable(GL11.GL_DEPTH_TEST)
     GL11.glEnable(GL11.GL_TEXTURE_2D)
-    style.renderBackground(this, basicX, basicY)
+    style.render(this, basicX, basicY)
   }
 
   final override fun drawScreen(pMouseX: Int, pMouseY: Int, pDelta: Float) {

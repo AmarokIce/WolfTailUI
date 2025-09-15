@@ -1,7 +1,6 @@
 package club.someoneice.wolftail
 
 import club.someoneice.wolftail.api.IToast
-import club.someoneice.wolftail.ui.WGuiToast
 import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
@@ -18,10 +17,10 @@ class WolfTailUI {
     const val ID = "wolftail"
     val LOG: Logger = LogManager.getLogger(ID)
 
-    internal val TOAST_SET = ArrayList<WGuiToast>()
+    internal val TOAST_SET = ArrayList<GuiToast>()
 
     fun addToast(toast: IToast) {
-      this.TOAST_SET.add(WGuiToast(toast))
+      this.TOAST_SET.add(GuiToast(toast))
     }
   }
 
@@ -57,9 +56,9 @@ class WolfTailUI {
       return
     }
 
-    WGuiToast.setUp()
+    GuiToast.setUp()
 
-    TOAST_SET.forEach(WGuiToast::tick)
-    TOAST_SET.removeAll(WGuiToast::isDead)
+    TOAST_SET.forEach(GuiToast::tick)
+    TOAST_SET.removeAll(GuiToast::isDead)
   }
 }

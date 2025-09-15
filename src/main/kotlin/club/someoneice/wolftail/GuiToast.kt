@@ -1,10 +1,9 @@
-package club.someoneice.wolftail.ui
+package club.someoneice.wolftail
 
 import club.someoneice.wolftail.api.IToast
 import cpw.mods.fml.common.registry.GameRegistry
 import cpw.mods.fml.relauncher.Side
 import cpw.mods.fml.relauncher.SideOnly
-import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.RenderHelper
@@ -15,7 +14,7 @@ import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12
 
 @SideOnly(Side.CLIENT)
-class WGuiToast(val toast: IToast) : Gui() {
+class GuiToast(val toast: IToast) : Gui() {
   var lessAliveTick = MAX_TICK
   var speed = 25
 
@@ -30,12 +29,16 @@ class WGuiToast(val toast: IToast) : Gui() {
     val x = scaleW - (160 * getXFactor()).toInt()
     val y = indexY
 
-    style.renderBackground(this, x, y)
+    style.render(this, x, y)
 
-    mc.fontRenderer.drawString(I18n.format(this.toast.getToastTitle()),
-      x + 30, y + 7, -256)
-    mc.fontRenderer.drawString(I18n.format(this.toast.getToastText()),
-      x + 30, y + 18, -1)
+    mc.fontRenderer.drawString(
+      I18n.format(this.toast.getToastTitle()),
+      x + 30, y + 7, -256
+    )
+    mc.fontRenderer.drawString(
+      I18n.format(this.toast.getToastText()),
+      x + 30, y + 18, -1
+    )
 
     if (this.toast.byItemStack()) {
       renderItemStack(x + 8, y + 8)
@@ -90,7 +93,7 @@ class WGuiToast(val toast: IToast) : Gui() {
   companion object {
     private const val MAX_TICK = 200
     private val itemRenderer = RenderItem()
-    private val mc = Minecraft.getMinecraft()
+    private val mc = getMC()
 
     var scaleW: Int = 0
     var scaleH: Int = 0

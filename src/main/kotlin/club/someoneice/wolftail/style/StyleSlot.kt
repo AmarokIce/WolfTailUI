@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation
 import java.awt.Color
 import java.awt.image.BufferedImage
 
+// Fixme - rewrite.
 object StyleSlot {
   val COLOR = Color(76, 86, 106)
 

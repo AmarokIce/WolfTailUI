@@ -1,7 +1,7 @@
 package club.someoneice.wolftail.style
 
 import club.someoneice.wolftail.WolfTailUI
-import club.someoneice.wolftail.api.IUIStyle
+import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.clearColor
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
@@ -11,11 +11,13 @@ import org.lwjgl.util.Rectangle
 import java.awt.Color
 import java.awt.image.BufferedImage
 
-/**
- * The title is the name for the ui in generator.
- */
-class StyleGameUI(private val title: String, private val sizeOf: Pair<Int, Int>, private val light: Boolean = false) :
-  IUIStyle {
+// Fixme
+@Deprecated("Will re-write.")
+class StyleGameUI(
+  private val title: String,
+  private val sizeOf: Pair<Int, Int>,
+  private val light: Boolean = false
+) : IStyle {
   private val texture: DynamicTexture
   private val resourceID: ResourceLocation
 
@@ -40,7 +42,7 @@ class StyleGameUI(private val title: String, private val sizeOf: Pair<Int, Int>,
 
   override fun getUIRange(): Rectangle = Rectangle()
 
-  override fun renderBackground(gui: Gui, x: Int, y: Int) {
+  override fun render(gui: Gui, x: Int, y: Int) {
     clearColor()
 
     Minecraft.getMinecraft().renderEngine.bindTexture(resourceID)
@@ -53,5 +55,8 @@ class StyleGameUI(private val title: String, private val sizeOf: Pair<Int, Int>,
 
     val COLOR_L0 = Color(236, 239, 244, 255)
     val COLOR_L1 = Color(216, 222, 233, 255)
+  }
+
+  override fun drawString(pString: String, pGui: Gui, x: Int, y: Int) {
   }
 }

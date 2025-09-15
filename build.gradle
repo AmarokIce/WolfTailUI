@@ -1,27 +1,29 @@
 buildscript {
-    repositories {
-        mavenLocal()
-        mavenCentral()
-        maven {
-            url = "https://jcenter.bintray.com/"
-        }
-        maven {
-            name = "forge"
-            url = "https://files.minecraftforge.net/maven"
-        }
-        maven {
-            name = "sonatype"
-            url = "https://oss.sonatype.org/content/repositories/snapshots/"
-        }
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+      url = "https://jcenter.bintray.com/"
+    }
+    maven {
+      name = "forge"
+      url = "https://files.minecraftforge.net/maven"
+    }
+    maven {
+      name = "sonatype"
+      url = "https://oss.sonatype.org/content/repositories/snapshots/"
+    }
+  }
+
+  dependencies {
+    classpath('com.anatawa12.forge:ForgeGradle:1.2-1.1.+') {
+      changing = true
     }
 
-    dependencies {
-        classpath('com.anatawa12.forge:ForgeGradle:1.2-1.1.+') {
-            changing = true
-        }
-
-        if (project.enableUsingKotlin.toBoolean()) { classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.kotlin_version" }
+    if (project.enableUsingKotlin.toBoolean()) {
+      classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$project.kotlin_version"
     }
+  }
 }
 
 apply plugin: 'java'
@@ -32,8 +34,8 @@ apply plugin: 'maven-publish'
 apply plugin: 'forge'
 
 if (project.enableUsingKotlin.toBoolean()) {
-    apply plugin: 'kotlin'
-    apply plugin: 'org.jetbrains.kotlin.jvm'
+  apply plugin: 'kotlin'
+  apply plugin: 'org.jetbrains.kotlin.jvm'
 }
 
 version = "${project.modVersion}"
@@ -41,135 +43,137 @@ group = "${project.modGroupId}"
 archivesBaseName = "${project.modArchivesName}"
 
 configurations {
-    includeCompile
-    implementation.extendsFrom includeCompile
+  includeCompile
+  implementation.extendsFrom includeCompile
 }
 
 minecraft {
-    version = "1.7.10-10.13.4.1614-1.7.10"
-    runDir = "minecraft"
+  version = "1.7.10-10.13.4.1614-1.7.10"
+  runDir = "minecraft"
 }
 
 repositories {
-    mavenLocal()
-    mavenCentral()
+  mavenLocal()
+  mavenCentral()
 
-    maven {
-        name "Curse Maven"
-        url "https://cursemaven.com"
-    }
+  maven {
+    name "Curse Maven"
+    url "https://cursemaven.com"
+  }
 
-    maven {
-        name "Modrinth Maven"
-        url "https://api.modrinth.com/maven"
-    }
+  maven {
+    name "Modrinth Maven"
+    url "https://api.modrinth.com/maven"
+  }
 }
 
 dependencies {
-    if (project.enableUsingKotlin.toBoolean()) {
-        // implementation "curse.maven:AJSCore-445557:$asjcore_laster"
-        implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    }
+  if (project.enableUsingKotlin.toBoolean()) {
+    // implementation "curse.maven:AJSCore-445557:$asjcore_laster"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+  }
 
-    if (project.enableUsingMysteriumLib.toBoolean()) {
-        implementation "curse.maven:MysteriumLib-645051:3963822"
-    }
+  if (project.enableUsingMysteriumLib.toBoolean()) {
+    implementation "curse.maven:MysteriumLib-645051:3963822"
+  }
+
+  implementation "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 processResources {
-    inputs.property "modversion", project.version
-    inputs.property "mcversion", project.minecraft.version
-    inputs.property "moddescription", project.modDescription
-    inputs.property "modname", project.modName
-    inputs.property "modid", project.modId
+  inputs.property "modversion", project.version
+  inputs.property "mcversion", project.minecraft.version
+  inputs.property "moddescription", project.modDescription
+  inputs.property "modname", project.modName
+  inputs.property "modid", project.modId
 
-    filesMatching("mcmod.info") {
-        expand  'modversion': project.version,
-                'mcversion': project.minecraft.version,
-                'moddescription': project.modDescription,
-                'modname': project.modName,
-                'modid': project.modId
-    }
+  filesMatching("mcmod.info") {
+    expand 'modversion': project.version,
+      'mcversion': project.minecraft.version,
+      'moddescription': project.modDescription,
+      'modname': project.modName,
+      'modid': project.modId
+  }
 }
 
 jar {
-    from file("./LICENSE")
+  from file("./LICENSE")
 }
 
 if (project.enableUsingMixin.toBoolean()) {
-    apply from: 'mixin.gradle'
+  apply from: 'mixin.gradle'
 } else {
-    jar {
-        from {
-            configurations.includeCompile.collect { it.isDirectory() ? it : zipTree(it) }
-        }
+  jar {
+    from {
+      configurations.includeCompile.collect { it.isDirectory() ? it : zipTree(it) }
     }
+  }
 }
 
 if (project.enableUsingMysteriumLib.toBoolean()) {
-    jar {
-        manifest {
-            attributes 'FMLCorePlugin': "${project.patchClass}"
-            attributes 'FMLCorePluginContainsFMLMod': 'true'
-        }
+  jar {
+    manifest {
+      attributes 'FMLCorePlugin': "${project.patchClass}"
+      attributes 'FMLCorePluginContainsFMLMod': 'true'
     }
+  }
 }
 
 sourceCompatibility = targetCompatibility = "1.8"
 
 tasks.withType(Jar).configureEach {
-    compileJava.options.encoding = 'UTF-8'
-    compileJava.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:all"
+  compileJava.options.encoding = 'UTF-8'
+  compileJava.options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:all"
 }
 
 allprojects {
-    gradle.projectsEvaluated {
-        tasks.withType(JavaCompile).tap {
-            configureEach {
-                options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:all"
-            }
-        }
+  gradle.projectsEvaluated {
+    tasks.withType(JavaCompile).tap {
+      configureEach {
+        options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation" << "-Xlint:all"
+      }
     }
+  }
 }
 
 if (project.enableUsingKotlin.toBoolean()) {
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
+  compileKotlin {
+    kotlinOptions {
+      jvmTarget = "1.8"
     }
+  }
 
-    compileTestKotlin {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
+  compileTestKotlin {
+    kotlinOptions {
+      jvmTarget = "1.8"
     }
+  }
 }
 
 tasks.register('deobfJar', Jar) {
-    dependsOn reobf
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
-    classifier 'deobf'
+  dependsOn reobf
+  duplicatesStrategy = DuplicatesStrategy.INCLUDE
+  classifier 'deobf'
 
-    from sourceSets.main.output
-    manifest.attributes(jar.manifest.getAttributes())
+  from sourceSets.main.output
+  manifest.attributes(jar.manifest.getAttributes())
 }
 
 tasks.register('sourcesJar', Jar) {
-    dependsOn classes
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    classifier 'deobf-sources'
+  dependsOn classes
+  duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+  classifier 'deobf-sources'
 
-    from sourceSets.main.allSource
-    exclude "assets"
-    exclude "asjlib_at.cfg"
-    exclude "methods.bin"
-    exclude "McpToSrg.csv"
+  from sourceSets.main.allSource
+  exclude "assets"
+  exclude "asjlib_at.cfg"
+  exclude "methods.bin"
+  exclude "McpToSrg.csv"
 }
 
 artifacts {
-    archives deobfJar
-    archives sourcesJar
+  archives deobfJar
+  archives sourcesJar
 }
 
 // "publishing.gradle"apply from: "publishing.gradle"
