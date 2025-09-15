@@ -5,19 +5,14 @@ Wolf Tail UI
 
 #### [MCMOD]() - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/wolftailui/) - [Modrinth](https://modrinth.com/mod/wolftailui/)
 
+## What is WolfTailUI
+
+WolfTailUI is a UI utility code library designed for Minecraft 1.7.10 Forge.
+Emphasize the cyclic use and automatically created UI and color schemes, reliable alignment, and more.
+
+WolfTailUI also provides a very convenient way to push Toast notifications into the game.
 
 ## Quick Start
-**Import**:
-
-```gradle
-maven {
-    name "kTT MavenSnapshots"
-    url "https://maven.kessokuteatime.work/snapshots"
-}
-
-implementation "club.someoneice.wolftail:WolfTailUI:0.0.1"
-```
-
 **Simple GuiScreen:**
 ```kotlin
 Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title= "wolftail_testUI", size = Pair(200, 180), lightStyle = true) {
@@ -38,6 +33,17 @@ WolfTailUI.addToast(IToast.create("Hello", "World", StyleToast.TOAST_DARK_UI, It
 ## Thanks
 
 This project used color from [Nord](https://github.com/nordtheme/nord). Thanks NordTheme create this color palette.
+
+## Try WolfTailUI now
+
+```groovy
+maven {
+    name "kTT MavenSnapshots"
+    url "https://maven.kessokuteatime.work/snapshots"
+}
+
+implementation "club.someoneice.wolftail:WolfTailUI:${wui_version}"
+```
 
 ## Sponsorship
 
