@@ -8,6 +8,13 @@ import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
 
 object Toasts {
+  internal val TOAST_SET = ArrayList<GuiToast>()
+
+  fun addToast(toast: IToast) {
+    this.TOAST_SET.add(GuiToast(toast))
+    WolfTailUI.LOG.debug("Success send a toast.")
+  }
+
   fun create(pTitle: String, pText: String, pStyle: StyleToast, pIconItem: Item, pMeta: Int): IToast {
     return object : IToast {
       override fun getToastTitle(): String = pTitle

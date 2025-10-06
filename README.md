@@ -45,6 +45,13 @@ maven {
 implementation "club.someoneice.wolftail:WolfTailUI:${wui_version}"
 ```
 
+## TODO
+
+[ ] Json Style Pack
+[ ] Game UI Based
+[ ] Default Styles
+[x] Toast
+
 ## Sponsorship
 
 [![](https://github.com/AmarokIce/AmarokIce/blob/main/img/AiFaDian.png)](https://ifdian.net/a/AmarokIce)

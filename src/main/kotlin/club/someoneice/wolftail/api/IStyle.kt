@@ -20,10 +20,11 @@ interface IStyle {
    *
    * @see club.someoneice.wolftail.style.StyleToast.render BasedToastUIStyle#renderBackground
    */
-  fun render(pGui: Gui, pPosX: Int, pPosY: Int)
+  fun render(pGui: Gui, pPosX: Int, pPosY: Int,
+             pWidth: Int = 0, pHeight: Int = 0, highlight: Boolean = false)
 
   /**
    * Draw text into screen gui.
    */
-  fun drawString(pString: String, pGui: Gui, x: Int, y: Int)
+  fun drawString(pString: String, pGui: Gui, x: Int, y: Int, highlight: Boolean = false)
 }

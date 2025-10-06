@@ -4,6 +4,7 @@ import club.someoneice.wolftail.api.IToast
 import cpw.mods.fml.common.registry.GameRegistry
 import cpw.mods.fml.relauncher.Side
 import cpw.mods.fml.relauncher.SideOnly
+import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import net.minecraft.client.gui.ScaledResolution
 import net.minecraft.client.renderer.RenderHelper
@@ -93,7 +94,7 @@ class GuiToast(val toast: IToast) : Gui() {
   companion object {
     private const val MAX_TICK = 200
     private val itemRenderer = RenderItem()
-    private val mc = getMC()
+    private val mc = Minecraft.getMinecraft()
 
     var scaleW: Int = 0
     var scaleH: Int = 0

@@ -1,12 +1,12 @@
 package club.someoneice.wolftail.api
 
+import club.someoneice.wolftail.WolfTailUI
 import net.minecraft.client.gui.Gui
+import net.minecraft.util.ResourceLocation
+import org.lwjgl.util.Rectangle
 
 interface IWidget {
-
-  fun wightStartAt(): Pair<Int, Int>
-
-  fun wightEndAt(): Pair<Int, Int> = wightStartAt()
+  fun weightPos(): Rectangle
 
   /**
    * Render the background. Remember, you should set up GL11.
@@ -16,16 +16,24 @@ interface IWidget {
   fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int)
 
   /**
-   * If mouse was in range will return true.
-   */
-  fun isInRange(pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int): Boolean {
-    val flagInX = pMouseX > pGuiX + this.wightStartAt().first && pMouseX < pGuiX + this.wightEndAt().first
-    val flagInY = pMouseY > pGuiY + this.wightStartAt().second && pMouseY < pGuiY + this.wightEndAt().second
-    return flagInX && flagInY
-  }
-
-  /**
    * The based resource path for UI.
    */
   fun getStyle(): IStyle
+
+  /**
+   * If mouse was in range will return true.
+   */
+  fun isInRange(pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int): Boolean {
+    val pos = this.weightPos()
+
+    val flagInX = pMouseX > pGuiX + pos.x && pMouseX < pGuiX + pos.x + pos.width
+    val flagInY = pMouseY > pGuiY + pos.y && pMouseY < pGuiY + pos.y + pos.height
+
+    return flagInX && flagInY
+  }
+
+  companion object {
+    val POS_ZERO = Rectangle(0, 0, 0, 0)
+    val DEF_RESOURCE = ResourceLocation(WolfTailUI.ID, "default")
+  }
 }
