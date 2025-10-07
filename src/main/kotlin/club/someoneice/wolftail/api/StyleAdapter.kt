@@ -12,10 +12,13 @@ abstract class StyleAdapter: IStyle {
   override fun getUIRange(): Rectangle = POS_ZERO
   override fun getTexture(): ResourceLocation = DEF_RESOURCE
 
-  override fun render(pGui: Gui, pPosX: Int, pPosY: Int, pWidth: Int, pHeight: Int, highlight: Boolean) {
+  override fun render(pGui: Gui, pPosX: Int, pPosY: Int, pWidth: Int, pHeight: Int,
+                      args: Map<String, Any>) {
   }
 
-  override fun drawString(pString: String, pGui: Gui, x: Int, y: Int, highlight: Boolean) {
+  override fun drawString(pString: String, pGui: Gui, x: Int, y: Int,
+                          args: Map<String, Any>
+  ) {
     Minecraft.getMinecraft().fontRenderer.drawString(pString, x, y, Color.WHITE.rgb)
   }
 }

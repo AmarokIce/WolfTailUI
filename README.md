@@ -3,7 +3,7 @@ Wolf Tail UI
 =======
 ### The game UI library for Minecraft 1.7.10.
 
-#### [MCMOD]() - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/wolftailui/) - [Modrinth](https://modrinth.com/mod/wolftailui/)
+#### [MCMOD](https://www.mcmod.cn/class/20181.html) - [CurseForge](https://www.curseforge.com/minecraft/mc-mods/wolftailui/) - [Modrinth](https://modrinth.com/mod/wolftailui/)
 
 ## What is WolfTailUI
 
@@ -34,7 +34,7 @@ WolfTailUI.addToast(IToast.create("Hello", "World", StyleToast.TOAST_DARK_UI, It
 
 This project used color from [Nord](https://github.com/nordtheme/nord). Thanks NordTheme create this color palette.
 
-## Try WolfTailUI now
+## Try WolfTailUI Now
 
 ```groovy
 maven {
@@ -48,6 +48,7 @@ implementation "club.someoneice.wolftail:WolfTailUI:${wui_version}"
 ## TODO
 
 [ ] Json Style Pack
+[ ] Json GUI
 [ ] Game UI Based
 [ ] Default Styles
 [x] Toast

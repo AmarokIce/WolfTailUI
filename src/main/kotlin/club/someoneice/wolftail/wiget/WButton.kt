@@ -38,7 +38,7 @@ open class WButton(
     val w = this.weightPos().width
     val h = this.weightPos().height
 
-    this.style.render(pGui, pGuiX, pGuiY, w, h, highlight)
-    this.style.drawString(title, pGui, pGuiX, pGuiY, highlight)
+    this.style.render(pGui, pGuiX, pGuiY, w, h, mapOf("highlight" to highlight))
+    this.style.drawString(title, pGui, pGuiX, pGuiY, mapOf("highlight" to highlight))
   }
 }

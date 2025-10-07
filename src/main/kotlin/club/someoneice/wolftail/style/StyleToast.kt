@@ -23,7 +23,8 @@ open class StyleToast(val startAt: Int) : IStyle {
   override fun getTexture(): ResourceLocation = texture
   override fun getUIRange(): Rectangle = range
 
-  override fun render(pGui: Gui, pPosX: Int, pPosY: Int, pWidth: Int, pHeight: Int, highlight: Boolean) {
+  override fun render(pGui: Gui, pPosX: Int, pPosY: Int, pWidth: Int, pHeight: Int,
+                      args: Map<String, Any>) {
     clearColor()
     GL11.glEnable(GL11.GL_TEXTURE_2D)
     Minecraft.getMinecraft().textureManager.bindTexture(this.getTexture())
@@ -31,7 +32,8 @@ open class StyleToast(val startAt: Int) : IStyle {
     this.renderTexture(pGui, pPosX, pPosY)
   }
 
-  override fun drawString(pString: String, pGui: Gui, x: Int, y: Int, highlight: Boolean) {
+  override fun drawString(pString: String, pGui: Gui, x: Int, y: Int,
+                          args: Map<String, Any>) {
   }
 
   open fun renderTexture(pGui: Gui, pPosX: Int, pPosY: Int) {

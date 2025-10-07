@@ -16,10 +16,12 @@ open class StyleFont(private val color: Color = Color.WHITE,
     pGui: Gui,
     x: Int,
     y: Int,
-    highlight: Boolean
+    args: Map<String, Any>
   ) {
     val color: Color
     val shadowColor: Color
+
+    val highlight = args.containsKey("highlight") && args["highlight"] == true
 
     if (highlight) {
       color = this.highlightColor
