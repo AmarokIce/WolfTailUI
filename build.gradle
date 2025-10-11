@@ -77,7 +77,7 @@ dependencies {
     implementation "curse.maven:MysteriumLib-645051:3963822"
   }
 
-  implementation "com.google.code.findbugs:jsr305:3.0.2"
+  compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
 
 processResources {

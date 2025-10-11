@@ -6,7 +6,7 @@ interface IWidgetFunction : IWidget {
   /**
    * Return true if it can click by mouse.
    */
-  fun canBeClick(): Boolean
+  fun canBeClick(): Boolean = true
 
   /**
    * On mouse clicked.
@@ -14,10 +14,8 @@ interface IWidgetFunction : IWidget {
    * @param pGui The GuiScreen.
    * @param pMouseX The mouse's position x.
    * @param pMouseY The mouse's position y.
-   * @param pGuiX The gui render position's 'zero' x.
-   * @param pGuiY The gui render position's 'zero' y.
    */
-  fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiY: Int, pGuiX: Int)
+  fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int) {}
 
   /**
    * On mouse passed.
@@ -25,8 +23,8 @@ interface IWidgetFunction : IWidget {
    * @param pGui The GuiScreen.
    * @param pMouseX The mouse's position x.
    * @param pMouseY The mouse's position y.
-   * @param pGuiX The gui render position's 'zero' x.
-   * @param pGuiY The gui render position's 'zero' y.
    */
-  fun onPassed(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiY: Int, pGuiX: Int)
+  fun onPassed(pGui: Gui, pMouseX: Int, pMouseY: Int) {}
+
+  fun onKeyboardInput(pGui: Gui, keyChar: Char, keyCode: Int) {}
 }

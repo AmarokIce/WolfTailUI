@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.wiget
+package club.someoneice.wolftail.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
@@ -38,7 +38,8 @@ open class WString(
   override fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
     val highlight = if (hasHighlight) isInRange(pMouseX, pMouseY, pGuiX, pGuiY) else false
     val tPos = this.weightPos()
-    style.drawString(this.title, pGui, pGuiX + tPos.x, pGuiY + tPos.y, highlight)
+    style.drawString(this.title, pGui, pGuiX + tPos.x, pGuiY + tPos.y,
+      mapOf("highlight" to highlight))
   }
 
   override fun getStyle(): IStyle = style

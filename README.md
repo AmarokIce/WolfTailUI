@@ -15,7 +15,8 @@ WolfTailUI also provides a very convenient way to push Toast notifications into 
 ## Quick Start
 **Simple GuiScreen:**
 ```kotlin
-Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title= "wolftail_testUI", size = Pair(200, 180), lightStyle = true) {
+Minecraft.getMinecraft().displayGuiScreen(object: WGuiBased(title= "WolfTail_testUI", size =
+  Pair(200, 180), lightStyle = true) {
     override fun start() {
         this.addWidget(WString("The string of 'Hello' from WolfTailUI!", Pair(5, 5)))
         this.addWidget(WButton("And a button!", Pair(5, 20), Pair(95, 40), false) {})
@@ -51,6 +52,7 @@ implementation "club.someoneice.wolftail:WolfTailUI:${wui_version}"
 [ ] Json GUI
 [ ] Game UI Based
 [ ] Default Styles
+[ ] Game Widgets
 [x] Toast
 
 ## Sponsorship

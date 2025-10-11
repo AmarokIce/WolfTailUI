@@ -1,5 +1,6 @@
 package club.someoneice.wolftail.api
 
+import club.someoneice.wolftail.style.StyleFont
 import com.google.common.collect.ImmutableMap
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
@@ -14,7 +15,7 @@ interface IStyle {
   /**
    * The pos of data will render. Start and end.
    */
-  fun getUIRange(): Rectangle
+  fun getUIRange(): Rectangle = IWidget.POS_ZERO
 
   /**
    * Render the background. Remember, you should set up GL11 by your self.
@@ -29,5 +30,7 @@ interface IStyle {
    * Draw text into screen gui.
    */
   fun drawString(pString: String, pGui: Gui, x: Int, y: Int,
-                 args: Map<String, Any> = ImmutableMap.of())
+                 args: Map<String, Any> = ImmutableMap.of()) {
+    StyleFont.INSTANCE.drawString(pString, pGui, x - 1, y + 1, args)
+  }
 }

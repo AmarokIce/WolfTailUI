@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.wiget
+package club.someoneice.wolftail.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidgetFunction
@@ -8,25 +8,18 @@ import org.lwjgl.util.Rectangle
 open class WButton(
   private val title: String,
   private val pos: Rectangle,
-  private val clicked: () -> Unit,
-  private val style: IStyle
-) : IWidgetFunction {
-  constructor(title: String, x: Int, y: Int, w: Int, h: Int,
-                     clicked: () -> Unit, style: IStyle
-  ): this(title, Rectangle(x, y, w, h), clicked, style)
+  private val style: IStyle,
+  private val clicked: () -> Unit = {}
+  ) : IWidgetFunction {
+  constructor(title: String, x: Int, y: Int, w: Int, h: Int, style: IStyle,
+              clicked: () -> Unit = {}
+  ): this(title, Rectangle(x, y, w, h), style, clicked)
 
-  protected constructor(title: String, x: Int, y: Int, w: Int, h: Int,
-                        style: IStyle): this(title, x, y, w, h, {}, style)
-
-  override fun canBeClick(): Boolean = true
   override fun weightPos(): Rectangle = this.pos
   override fun getStyle(): IStyle = this.style
 
-  override fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiY: Int, pGuiX: Int) {
+  override fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int) {
     clicked.invoke()
-  }
-
-  override fun onPassed(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiY: Int, pGuiX: Int) {
   }
 
   override fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {

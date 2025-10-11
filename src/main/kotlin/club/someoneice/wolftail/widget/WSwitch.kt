@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.wiget
+package club.someoneice.wolftail.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidgetFunction
@@ -7,7 +7,7 @@ import org.lwjgl.util.Rectangle
 
 open class WSwitch(
   private val pos: Rectangle,
-  private val sytle: IStyle
+  private val style: IStyle
 ) : IWidgetFunction {
   constructor(
     x: Int,
@@ -20,16 +20,14 @@ open class WSwitch(
   private var isOn = false
 
   override fun weightPos(): Rectangle = this.pos
+  override fun getStyle(): IStyle = this.style
 
   override fun canBeClick(): Boolean {
     return true
   }
 
-  override fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiY: Int, pGuiX: Int) {
+  override fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int) {
     this.isOn = !this.isOn
-  }
-
-  override fun onPassed(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiY: Int, pGuiX: Int) {
   }
 
   override fun render(
@@ -42,8 +40,8 @@ open class WSwitch(
     val flag = this.isInRange(pMouseX, pMouseY, pGuiX, pGuiY)
 
     this.getStyle().render(pGui, pMouseX, pMouseY,
-      pGuiX + this.weightPos().x, pGuiY + this.weightPos().y, flag)
+      pGuiX + this.weightPos().x, pGuiY + this.weightPos().y,
+      mapOf("highlight" to flag, "isOn" to this.isOn))
   }
 
-  override fun getStyle(): IStyle = this.sytle
 }

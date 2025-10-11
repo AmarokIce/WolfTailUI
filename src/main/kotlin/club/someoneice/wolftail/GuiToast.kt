@@ -73,8 +73,10 @@ class GuiToast(val toast: IToast) : Gui() {
 
     GL11.glEnable(GL12.GL_RESCALE_NORMAL)
     RenderHelper.enableGUIStandardItemLighting()
-    itemRenderer.renderItemAndEffectIntoGUI(mc.fontRenderer, mc.textureManager, stack, x, y)
-    itemRenderer.renderItemOverlayIntoGUI(mc.fontRenderer, mc.textureManager, stack, x, y)
+    itemRenderer.renderItemAndEffectIntoGUI(mc.fontRenderer,
+      mc.textureManager, stack, x, y)
+    itemRenderer.renderItemOverlayIntoGUI(mc.fontRenderer,
+      mc.textureManager, stack, x, y)
     RenderHelper.disableStandardItemLighting()
     GL11.glDisable(GL12.GL_RESCALE_NORMAL)
   }
@@ -107,13 +109,15 @@ class GuiToast(val toast: IToast) : Gui() {
       GL11.glLoadIdentity()
       GL11.glMatrixMode(GL11.GL_MODELVIEW)
       GL11.glLoadIdentity()
-      val scale = ScaledResolution(mc, mc.displayWidth, mc.displayHeight)
+      val scale = ScaledResolution(mc,
+        mc.displayWidth, mc.displayHeight)
       scaleW = scale.scaledWidth
       scaleH = scale.scaledHeight
       GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT)
       GL11.glMatrixMode(GL11.GL_PROJECTION)
       GL11.glLoadIdentity()
-      GL11.glOrtho(0.0, scaleW.toDouble(), scaleH.toDouble(), 0.0, 1000.0, 3000.0)
+      GL11.glOrtho(0.0, scaleW.toDouble(), scaleH.toDouble(),
+        0.0, 1000.0, 3000.0)
       GL11.glMatrixMode(GL11.GL_MODELVIEW)
       GL11.glLoadIdentity()
       GL11.glTranslatef(0.0f, 0.0f, -2000.0f)

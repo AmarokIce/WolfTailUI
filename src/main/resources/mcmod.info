@@ -5,11 +5,11 @@
       "description": "${moddescription}",
       "version": "${modversion}",
       "mcversion": "${mcversion}",
-      "url": "",
+      "url": "https://www.mcmod.cn/class/20181.html",
       "updateUrl": "",
       "authorList": ["Someoneice"],
       "credits": "Someoneice",
-      "logoFile": "",
+      "logoFile": "assets/wolftail/Icon.png",
       "screenshots": [],
       "dependencies": []
     }
