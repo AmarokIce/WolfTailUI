@@ -7,9 +7,9 @@ import org.lwjgl.input.Keyboard
 import org.lwjgl.util.Rectangle
 
 open class WLabel(
-  val pos: Rectangle,
-  val offset: Pair<Int, Int> = 2 to 2,
-  val style: IStyle
+  private val pos: Rectangle,
+  private val offset: Pair<Int, Int> = 2 to 2,
+  private val style: IStyle
 ) : IWidgetFunction {
   constructor(x: Int, y: Int, w: Int, h: Int,
               offsetX: Int = 2, offsetY: Int = 2,

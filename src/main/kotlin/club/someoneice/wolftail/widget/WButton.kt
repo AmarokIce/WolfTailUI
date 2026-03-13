@@ -10,7 +10,7 @@ open class WButton(
   private val pos: Rectangle,
   private val style: IStyle,
   private val clicked: () -> Unit = {}
-  ) : IWidgetFunction {
+) : IWidgetFunction {
   constructor(title: String, x: Int, y: Int, w: Int, h: Int, style: IStyle,
               clicked: () -> Unit = {}
   ): this(title, Rectangle(x, y, w, h), style, clicked)

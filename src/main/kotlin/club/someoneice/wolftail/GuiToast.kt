@@ -20,6 +20,8 @@ class GuiToast(val toast: IToast) : Gui() {
   var speed = 25
 
   fun tick() {
+    GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
+
     GL11.glDisable(GL11.GL_DEPTH_TEST)
     GL11.glDepthMask(false)
 
@@ -32,23 +34,16 @@ class GuiToast(val toast: IToast) : Gui() {
 
     style.render(this, x, y)
 
-    mc.fontRenderer.drawString(
-      I18n.format(this.toast.getToastTitle()),
-      x + 30, y + 7, -256
-    )
-    mc.fontRenderer.drawString(
-      I18n.format(this.toast.getToastText()),
-      x + 30, y + 18, -1
-    )
+    style.drawString(I18n.format(this.toast.getToastTitle()),
+      this, x + 30, y + 6, mapOf("flag" to "title"))
+    style.drawString(I18n.format(this.toast.getToastText()),
+      this, x + 30, y + 17, mapOf("flag" to "text"))
 
     if (this.toast.byItemStack()) {
       renderItemStack(x + 8, y + 8)
     } else {
       renderIcon(this.toast.getToastIcon(), x + 8, y + 8)
     }
-
-    GL11.glDepthMask(true)
-    GL11.glEnable(GL11.GL_DEPTH_TEST)
 
     GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT)
 
@@ -64,9 +59,7 @@ class GuiToast(val toast: IToast) : Gui() {
     this.toast.bindTexture(this, x, y)
   }
 
-  // Fixme - The seconds and more will have no alphas.
   fun renderItemStack(x: Int, y: Int) {
-
     val rl = this.toast.getToastIcon()
     val stack = GameRegistry.findItemStack(rl.resourceDomain, rl.resourcePath, 1)
     stack.itemDamage = this.toast.itemStackMeta()
@@ -79,6 +72,7 @@ class GuiToast(val toast: IToast) : Gui() {
       mc.textureManager, stack, x, y)
     RenderHelper.disableStandardItemLighting()
     GL11.glDisable(GL12.GL_RESCALE_NORMAL)
+    GL11.glEnable(3042)   // GL_BLEND
   }
 
   private fun getXFactor(): Double {

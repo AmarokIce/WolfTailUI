@@ -15,7 +15,8 @@ object Toasts {
     WolfTailUI.LOG.debug("Success send a toast.")
   }
 
-  fun create(pTitle: String, pText: String, pStyle: StyleToast, pIconItem: Item, pMeta: Int): IToast {
+  fun create(pTitle: String, pText: String, pStyle: StyleToast, pIconItem: Item, pMeta: Int = 0):
+    IToast {
     return object : IToast {
       override fun getToastTitle(): String = pTitle
       override fun getToastText(): String = pText

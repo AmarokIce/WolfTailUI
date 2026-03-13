@@ -7,7 +7,7 @@ import java.awt.Color
 
 open class StyleFont(private val color: Color = Color.WHITE,
                      private val highlightColor: Color = Color.BLUE,
-                     private val hasShadow: Boolean = true,
+                     private val hasShadow: Boolean = false,
                      private val shadowColor: Color = Color.GRAY,
                      private val highlightShadowColor: Color = Color.GRAY
 ) : StyleAdapter() {
@@ -18,20 +18,16 @@ open class StyleFont(private val color: Color = Color.WHITE,
     y: Int,
     args: Map<String, Any>
   ) {
-    val color: Color
-    val shadowColor: Color
-
     val highlight = args.containsKey("highlight") && args["highlight"] == true
-
-    if (highlight) {
-      color = this.highlightColor
-      shadowColor = this.highlightShadowColor
-    } else {
-      color = this.color
-      shadowColor = this.shadowColor
-    }
+    val color =
+      if (args.containsKey("color")) Color(args["color"] as Int)
+      else if (highlight) this.highlightColor else this.color
+    var shadowColor =
+      if (args.containsKey("shadowColor")) Color(args["shadowColor"] as Int)
+      else if (highlight) this.highlightShadowColor else this.shadowColor
 
     val font = Minecraft.getMinecraft().fontRenderer
+    val hasShadow = this.hasShadow || (args.containsKey("shadow") && args["shadow"] == true)
 
     if (hasShadow) {
       font.drawString(pString, x + 1, y + 1, shadowColor.rgb)

@@ -10,10 +10,9 @@ import cpw.mods.fml.common.gameevent.TickEvent
 import net.minecraftforge.common.MinecraftForge
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import org.lwjgl.opengl.GL11
 
 @Suppress("unused")
-@Mod(modid = WolfTailUI.ID)
+@Mod(modid = WolfTailUI.ID, modLanguage = "kotlin")
 class WolfTailUI {
   companion object {
     const val ID = "wolftail"
@@ -21,6 +20,7 @@ class WolfTailUI {
     val LOG: Logger = LogManager.getLogger(ID)
   }
 
+  @Mod.EventHandler
   fun perInit(event: FMLPreInitializationEvent) {
     printLog()
 
@@ -30,7 +30,6 @@ class WolfTailUI {
 
   @Mod.EventHandler
   fun init(event: FMLInitializationEvent) {
-
   }
 
   @SubscribeEvent
@@ -50,7 +49,7 @@ class WolfTailUI {
     LOG.info(",--.   ,--.       ,--. ,---.,--------.       ,--.,--.    ,--. ,--.,--. ")
     LOG.info("|  |   |  | ,---. |  |/  .-''--.  .--',--,--.`--'|  |    |  | |  ||  | ")
     LOG.info("|  |.'.|  || .-. ||  ||  `-,   |  |  ' ,-.  |,--.|  |    |  | |  ||  | ")
-    LOG.info("|   ,'.   |' '-' '|  ||  .-'   |  |  \\ '-'  ||  ||  |    '  '-'  '|  | ")
+    LOG.info("|   ,'.   |' '-' '|  ||  .-'   |  |  | '-'  ||  ||  |    '  '-'  '|  | ")
     LOG.info("'--'   '--' `---' `--'`--'     `--'   `--`--'`--'`--'     `-----' `--' ")
     LOG.info("||                                                                  ||")
     LOG.info("||         Github: https://github.com/AmarokIce/WolfTailUI/         ||")
@@ -60,8 +59,4 @@ class WolfTailUI {
     LOG.info(" \\\\================================================================//")
     LOG.info("")
   }
-}
-
-fun clearColor() {
-  GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
 }
