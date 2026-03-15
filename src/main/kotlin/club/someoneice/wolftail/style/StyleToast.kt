@@ -2,6 +2,7 @@ package club.someoneice.wolftail.style
 
 import club.someoneice.wolftail.WolfTailUI
 import club.someoneice.wolftail.api.IStyle
+import club.someoneice.wolftail.api.StyleType
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
@@ -9,18 +10,31 @@ import org.lwjgl.opengl.GL11
 import org.lwjgl.util.Rectangle
 import java.awt.Color
 
-open class StyleToast(val startAt: Int) : IStyle {
+open class StyleToast(
+  private val range: Rectangle,
+  private val texture: ResourceLocation
+) : IStyle {
+
+  constructor(x: Int, y: Int, w: Int, h: Int, texture: ResourceLocation):
+    this(Rectangle(x, y, x + w, y + h), texture)
+
   companion object {
-    val TOAST_DARK_UI = StyleToast(0)
-    val TOAST_LIGHT_UI = StyleToast(32)
-    val TOAST_T_DARK_UI = StyleToast(64)
-    val TOAST_T_LIGHT_UI = StyleToast(96)
+    private val defaultRL = ResourceLocation(WolfTailUI.ID, "default_ui.png")
+
+    val TOAST_DARK_UI = StyleToast(96, 0, 160, 32, defaultRL)
+    val TOAST_LIGHT_UI = StyleToast(96, 32, 160, 32, defaultRL)
+    val TOAST_T_DARK_UI = StyleToast(96, 64, 160, 32, defaultRL)
+    val TOAST_T_LIGHT_UI = StyleToast(96, 96, 160, 32, defaultRL)
+
+    init {
+      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_dark")]= TOAST_DARK_UI
+      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_light")] = TOAST_LIGHT_UI
+      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_modern_dark")] = TOAST_T_DARK_UI
+      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_modern_light")] = TOAST_T_LIGHT_UI
+    }
   }
 
-  private val range = Rectangle(96, startAt, 160, 32)
-  private val texture = ResourceLocation(WolfTailUI.ID, "default_ui.png")
-
-  override fun getTexture(): ResourceLocation = texture
+  override fun getTexture(): ResourceLocation = this.texture
   override fun getUIRange(): Rectangle = range
 
   override fun render(pGui: Gui, pPosX: Int, pPosY: Int, pWidth: Int, pHeight: Int,

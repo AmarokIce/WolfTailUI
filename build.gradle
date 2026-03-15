@@ -57,6 +57,16 @@ repositories {
   mavenCentral()
 
   maven {
+    name "kTT MavenReleases"
+    url "https://maven.kessokuteatime.work/releases"
+  }
+
+  maven {
+    name "kTT MavenReleases"
+    url "https://maven.kessokuteatime.work/snapshots"
+  }
+
+  maven {
     name "Curse Maven"
     url "https://cursemaven.com"
   }
@@ -76,6 +86,8 @@ dependencies {
   if (project.enableUsingMysteriumLib.toBoolean()) {
     implementation "curse.maven:MysteriumLib-645051:3963822"
   }
+
+  implementation "club.someoneice.pineapplepsychic:pineapple-psychic:1.9"
 
   compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }

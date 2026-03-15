@@ -55,7 +55,7 @@ object ResourceTextureUtil {
     for (x in startU until endU) {
       for (y in startV until endV) {
         val color = image.getRGB(x, y)
-        Gui.drawRect(posX + x, posY + y, posX + x, posY + y, color)
+        Gui.drawRect(posX + x, posY + y, posX + x + 1, posY + y + 1, color)
       }
     }
   }
