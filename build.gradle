@@ -197,12 +197,5 @@ java {
   withSourcesJar()
 }
 
-publisherMineBBS {
-  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYl9pZCI6Ijg3NjY3IiwiYXBpX2tleSI6IjdWME1oRDhWZ0padHlCOEYxZGVFR00zU2dsTWtEYU1iIiwiZXhwIjo0OTI4NjU3ODg4LCJpc3MiOiJOeWFuQ2F0ZGEifQ.tYNtAIEJcdKheQYEdf3DrdiUVFXr9jQ654eCh2xc6Ns"
-  projectId = 12001
-  title = "[自动推送] $version"
-  description = "这是一次自动推送更新。详情请见百科。"
-}
-
 
 apply from: "publishing.gradle"
