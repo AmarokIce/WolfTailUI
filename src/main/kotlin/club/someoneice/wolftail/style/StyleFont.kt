@@ -1,6 +1,5 @@
 package club.someoneice.wolftail.style
 
-import club.someoneice.wolftail.api.StyleAdapter
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import java.awt.Color
@@ -22,7 +21,7 @@ open class StyleFont(private val color: Color = Color.WHITE,
     val color =
       if (args.containsKey("color")) Color(args["color"] as Int)
       else if (highlight) this.highlightColor else this.color
-    var shadowColor =
+    val shadowColor =
       if (args.containsKey("shadowColor")) Color(args["shadowColor"] as Int)
       else if (highlight) this.highlightShadowColor else this.shadowColor
 

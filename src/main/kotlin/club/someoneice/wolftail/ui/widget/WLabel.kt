@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.widget
+package club.someoneice.wolftail.ui.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidgetFunction
@@ -49,11 +49,12 @@ open class WLabel(
     this.text.append(keyChar)
   }
 
-  override fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int) {
+  override fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pMouseButton: Int): Boolean {
     this.isOn = true
+    return false
   }
 
-  override fun onPassed(pGui: Gui, pMouseX: Int, pMouseY: Int) {
+  override fun onMousePassed(pGui: Gui, pMouseX: Int, pMouseY: Int) {
     this.isOn = false
   }
 }

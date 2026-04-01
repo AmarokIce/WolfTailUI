@@ -1,22 +1,24 @@
-package club.someoneice.wolftail
+package club.someoneice.wolftail.dev
 
+import club.someoneice.wolftail.WolfTailUI
 import club.someoneice.wolftail.api.IToast
 import club.someoneice.wolftail.style.StyleToast
+import club.someoneice.wolftail.ui.GuiWToast
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.client.gui.Gui
 import net.minecraft.item.Item
 import net.minecraft.util.ResourceLocation
 
 object Toasts {
-  internal val TOAST_SET = ArrayList<GuiToast>()
+  internal val TOAST_SET = ArrayList<GuiWToast>()
 
   fun addToast(toast: IToast) {
-    this.TOAST_SET.add(GuiToast(toast))
+    this.TOAST_SET.add(GuiWToast(toast))
     WolfTailUI.LOG.debug("Success send a toast.")
   }
 
   fun create(pTitle: String, pText: String, pStyle: StyleToast, pIconItem: Item, pMeta: Int = 0):
-    IToast {
+      IToast {
     return object : IToast {
       override fun getToastTitle(): String = pTitle
       override fun getToastText(): String = pText
@@ -39,7 +41,7 @@ object Toasts {
       override fun getToastText(): String = pText
       override fun getUIStyle(): StyleToast = pStyle
       override fun getToastIcon(): ResourceLocation = pIconRL
-      override fun bindTexture(pGui: Gui, pPosX: Int, pPosY: Int) {
+      override fun drawToastIcon(pGui: Gui, pPosX: Int, pPosY: Int) {
         pGui.drawTexturedModalRect(pPosX, pPosY, pU, pV, pW, pH)
       }
     }

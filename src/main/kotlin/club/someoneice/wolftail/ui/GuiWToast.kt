@@ -1,4 +1,4 @@
-package club.someoneice.wolftail
+package club.someoneice.wolftail.ui
 
 import club.someoneice.wolftail.api.IToast
 import cpw.mods.fml.common.registry.GameRegistry
@@ -15,7 +15,7 @@ import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL12
 
 @SideOnly(Side.CLIENT)
-class GuiToast(val toast: IToast) : Gui() {
+class GuiWToast(val toast: IToast) : Gui() {
   var lessAliveTick = MAX_TICK
   var speed = 25
 
@@ -34,9 +34,11 @@ class GuiToast(val toast: IToast) : Gui() {
 
     style.render(this, x, y)
 
-    style.drawString(I18n.format(this.toast.getToastTitle()),
+    style.drawString(
+      I18n.format(this.toast.getToastTitle()),
       this, x + 30, y + 6, mapOf("flag" to "title"))
-    style.drawString(I18n.format(this.toast.getToastText()),
+    style.drawString(
+      I18n.format(this.toast.getToastText()),
       this, x + 30, y + 17, mapOf("flag" to "text"))
 
     if (this.toast.byItemStack()) {
@@ -56,7 +58,7 @@ class GuiToast(val toast: IToast) : Gui() {
     GL11.glEnable(GL11.GL_TEXTURE_2D)
     mc.textureManager.bindTexture(rl)
     GL11.glDisable(GL11.GL_LIGHTING)
-    this.toast.bindTexture(this, x, y)
+    this.toast.drawToastIcon(this, x, y)
   }
 
   fun renderItemStack(x: Int, y: Int) {
@@ -72,7 +74,8 @@ class GuiToast(val toast: IToast) : Gui() {
       mc.textureManager, stack, x, y)
     RenderHelper.disableStandardItemLighting()
     GL11.glDisable(GL12.GL_RESCALE_NORMAL)
-    GL11.glEnable(3042)   // GL_BLEND
+    GL11.glEnable(GL11.GL_BLEND)
+    // GL11.glEnable(3042)   // GL_BLEND
   }
 
   private fun getXFactor(): Double {
@@ -103,8 +106,10 @@ class GuiToast(val toast: IToast) : Gui() {
       GL11.glLoadIdentity()
       GL11.glMatrixMode(GL11.GL_MODELVIEW)
       GL11.glLoadIdentity()
-      val scale = ScaledResolution(mc,
-        mc.displayWidth, mc.displayHeight)
+      val scale = ScaledResolution(
+        mc,
+        mc.displayWidth, mc.displayHeight
+      )
       scaleW = scale.scaledWidth
       scaleH = scale.scaledHeight
       GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT)

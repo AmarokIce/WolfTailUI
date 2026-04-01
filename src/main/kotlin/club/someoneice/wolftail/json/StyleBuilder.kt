@@ -3,9 +3,9 @@ package club.someoneice.wolftail.json
 import club.someoneice.json.node.JsonNode
 import club.someoneice.json.node.MapNode
 import club.someoneice.wolftail.api.IStyle
+import club.someoneice.wolftail.dev.ResourceTextureManager
 import club.someoneice.wolftail.style.StyleFont
 import club.someoneice.wolftail.style.StyleToast
-import club.someoneice.wolftail.util.ResourceTextureUtil
 import net.minecraft.util.ResourceLocation
 import java.io.File
 import java.io.FileNotFoundException
@@ -30,7 +30,6 @@ object StyleBuilder {
         return GuiData(x, y, w, h, texture)
       }
     }
-
   }
 
   fun toastStyleBuilder(conf: MapNode, textureDir: File): StyleToast {
@@ -42,9 +41,9 @@ object StyleBuilder {
     val img = ImageIO.read(texture)
 
     val rl =
-      ResourceTextureUtil.createDynamicTexture(ResourceLocation(data.texture), img)
+      ResourceTextureManager.createDynamicTexture(ResourceLocation(data.texture), img)
 
-    return StyleToast(data.x, data.y, data.w, data.h, rl)
+    return StyleToast(rl, data.x, data.y, data.w, data.h)
   }
 
   fun guiStyleBuilder(conf: MapNode, textureDir: File): IStyle {

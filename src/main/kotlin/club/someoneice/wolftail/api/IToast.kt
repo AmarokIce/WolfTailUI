@@ -16,8 +16,7 @@ interface IToast {
   /**
    * The toast background.
    *
-   * @see DefaultUIStyle
-   * @see club.someoneice.wolftail.style.StyleToast
+   * @see StyleToast
    */
   fun getUIStyle(): StyleToast
 
@@ -39,5 +38,6 @@ interface IToast {
    * @see IToast.byItemStack
    * @see IToast.getToastIcon
    */
-  fun bindTexture(pGui: Gui, pPosX: Int, pPosY: Int) {}
+  fun drawToastIcon(pGui: Gui, pPosX: Int, pPosY: Int) {
+  }
 }

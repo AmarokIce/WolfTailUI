@@ -1,41 +1,24 @@
 package club.someoneice.wolftail.style
 
-import club.someoneice.wolftail.WolfTailUI
 import club.someoneice.wolftail.api.IStyle
-import club.someoneice.wolftail.api.StyleType
+import club.someoneice.wolftail.constant.DefStyleToast
+import club.someoneice.wolftail.util.Positioning
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
 import org.lwjgl.opengl.GL11
-import org.lwjgl.util.Rectangle
 import java.awt.Color
 
 open class StyleToast(
-  private val range: Rectangle,
-  private val texture: ResourceLocation
+  private val texture: ResourceLocation,
+  private val range: Positioning
 ) : IStyle {
 
-  constructor(x: Int, y: Int, w: Int, h: Int, texture: ResourceLocation):
-    this(Rectangle(x, y, x + w, y + h), texture)
-
-  companion object {
-    private val defaultRL = ResourceLocation(WolfTailUI.ID, "default_ui.png")
-
-    val TOAST_DARK_UI = StyleToast(96, 0, 160, 32, defaultRL)
-    val TOAST_LIGHT_UI = StyleToast(96, 32, 160, 32, defaultRL)
-    val TOAST_T_DARK_UI = StyleToast(96, 64, 160, 32, defaultRL)
-    val TOAST_T_LIGHT_UI = StyleToast(96, 96, 160, 32, defaultRL)
-
-    init {
-      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_dark")]= TOAST_DARK_UI
-      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_light")] = TOAST_LIGHT_UI
-      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_modern_dark")] = TOAST_T_DARK_UI
-      StyleType.TOAST.builtInRegistry[ResourceLocation(WolfTailUI.ID, "toast_modern_light")] = TOAST_T_LIGHT_UI
-    }
-  }
+  constructor(texture: ResourceLocation, x: Int, y: Int, w: Int, h: Int):
+    this(texture, Positioning(x, y, w, h))
 
   override fun getTexture(): ResourceLocation = this.texture
-  override fun getUIRange(): Rectangle = range
+  override fun getUIRange(): Positioning = range
 
   override fun render(pGui: Gui, pPosX: Int, pPosY: Int, pWidth: Int, pHeight: Int,
                       args: Map<String, Any>) {
@@ -63,5 +46,13 @@ open class StyleToast(
       rangeIn.x, rangeIn.y,
       rangeIn.width, rangeIn.height
     )
+  }
+
+  @Deprecated("Will remove future.")
+  companion object {
+    val TOAST_DARK_UI = DefStyleToast.TOAST_DARK
+    val TOAST_LIGHT_UI = DefStyleToast.TOAST_LIGHT
+    val TOAST_T_DARK_UI = DefStyleToast.TOAST_T_DARK
+    val TOAST_T_LIGHT_UI = DefStyleToast.TOAST_T_LIGHT
   }
 }

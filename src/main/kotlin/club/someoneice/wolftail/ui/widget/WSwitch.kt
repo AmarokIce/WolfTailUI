@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.widget
+package club.someoneice.wolftail.ui.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidgetFunction
@@ -26,8 +26,9 @@ open class WSwitch(
     return true
   }
 
-  override fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int) {
+  override fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pMouseButton: Int): Boolean {
     this.isOn = !this.isOn
+    return false
   }
 
   override fun render(
@@ -43,5 +44,4 @@ open class WSwitch(
       pGuiX + this.weightPos().x, pGuiY + this.weightPos().y,
       mapOf("highlight" to flag, "isOn" to this.isOn))
   }
-
 }

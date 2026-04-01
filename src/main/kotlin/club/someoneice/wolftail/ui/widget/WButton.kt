@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.widget
+package club.someoneice.wolftail.ui.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidgetFunction
@@ -18,8 +18,10 @@ open class WButton(
   override fun weightPos(): Rectangle = this.pos
   override fun getStyle(): IStyle = this.style
 
-  override fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int) {
-    clicked.invoke()
+  override fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pMouseButton: Int): Boolean {
+    clicked()
+    TODO()
+    return false
   }
 
   override fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {

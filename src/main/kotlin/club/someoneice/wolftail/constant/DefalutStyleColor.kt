@@ -1,4 +1,4 @@
-package club.someoneice.wolftail
+package club.someoneice.wolftail.constant
 
 import java.awt.Color
 

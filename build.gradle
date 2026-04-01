@@ -2,6 +2,7 @@ buildscript {
   repositories {
     mavenLocal()
     mavenCentral()
+
     maven {
       url = "https://jcenter.bintray.com/"
     }
@@ -16,6 +17,8 @@ buildscript {
   }
 
   dependencies {
+    classpath("club.someoneice.mbp:minebbspublisher:1.0")
+
     classpath('com.anatawa12.forge:ForgeGradle:1.2-1.1.+') {
       changing = true
     }
@@ -30,6 +33,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
+apply plugin: 'minebbs-publisher'
 
 apply plugin: 'forge'
 
@@ -87,7 +91,7 @@ dependencies {
     implementation "curse.maven:MysteriumLib-645051:3963822"
   }
 
-  implementation "club.someoneice.pineapplepsychic:pineapple-psychic:1.9"
+  implementation "club.someoneice.pineapplepsychic:pineapple-psychic:1.9.1"
 
   compileOnly "com.google.code.findbugs:jsr305:3.0.2"
 }
@@ -174,7 +178,7 @@ tasks.register('deobfJar', Jar) {
 tasks.register('sourcesJar', Jar) {
   dependsOn classes
   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-  classifier 'deobf-sources'
+  classifier 'sources'
 
   from sourceSets.main.allSource
   exclude "assets"
@@ -187,5 +191,18 @@ artifacts {
   archives deobfJar
   archives sourcesJar
 }
+
+java {
+  withJavadocJar()
+  withSourcesJar()
+}
+
+publisherMineBBS {
+  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYl9pZCI6Ijg3NjY3IiwiYXBpX2tleSI6IjdWME1oRDhWZ0padHlCOEYxZGVFR00zU2dsTWtEYU1iIiwiZXhwIjo0OTI4NjU3ODg4LCJpc3MiOiJOeWFuQ2F0ZGEifQ.tYNtAIEJcdKheQYEdf3DrdiUVFXr9jQ654eCh2xc6Ns"
+  projectId = 12001
+  title = "[自动推送] $version"
+  description = "这是一次自动推送更新。详情请见百科。"
+}
+
 
 apply from: "publishing.gradle"

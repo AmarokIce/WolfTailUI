@@ -8,4 +8,8 @@ interface IUIStyle: IStyle {
 
   fun drawBackground(pGui: Gui, x: Int, y: Int, w: Int, h: Int,
                      args: Map<String, Any> = ImmutableMap.of())
+
+  override fun render(pGui: Gui, pPosX: Int, pPosY: Int, pWidth: Int, pHeight: Int, args: Map<String, Any>) {
+    return drawBackground(pGui, pPosX, pPosY, pWidth, pHeight)
+  }
 }

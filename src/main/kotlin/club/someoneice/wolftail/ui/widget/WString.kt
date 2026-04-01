@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.widget
+package club.someoneice.wolftail.ui.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget

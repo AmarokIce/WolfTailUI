@@ -1,11 +1,15 @@
 package club.someoneice.wolftail.api
 
 import club.someoneice.wolftail.style.StyleFont
+import club.someoneice.wolftail.style.StyleToast
+import club.someoneice.wolftail.util.Positioning
 import com.google.common.collect.ImmutableMap
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
-import org.lwjgl.util.Rectangle
 
+/**
+ * @see club.someoneice.wolftail.style.StyleAdapter
+ */
 interface IStyle {
   /**
    * The based resource path for UI.
@@ -15,12 +19,12 @@ interface IStyle {
   /**
    * The pos of data will render. Start and end.
    */
-  fun getUIRange(): Rectangle = IWidget.POS_ZERO
+  fun getUIRange(): Positioning = IWidget.POS_ZERO
 
   /**
    * Render the background. Remember, you should set up GL11 by your self.
    *
-   * @see club.someoneice.wolftail.style.StyleToast.render BasedToastUIStyle#renderBackground
+   * @sample StyleToast.render
    */
   fun render(pGui: Gui, pPosX: Int, pPosY: Int,
              pWidth: Int = 0, pHeight: Int = 0,

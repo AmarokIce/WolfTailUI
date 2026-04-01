@@ -1,6 +1,7 @@
 package club.someoneice.wolftail
 
-import club.someoneice.wolftail.Toasts.TOAST_SET
+import club.someoneice.wolftail.dev.Toasts.TOAST_SET
+import club.someoneice.wolftail.ui.GuiWToast
 import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
@@ -38,10 +39,10 @@ class WolfTailUI {
       return
     }
 
-    GuiToast.setUp()
+    GuiWToast.setUp()
 
-    TOAST_SET.forEach(GuiToast::tick)
-    TOAST_SET.removeAll(GuiToast::isDead)
+    TOAST_SET.forEach(GuiWToast::tick)
+    TOAST_SET.removeAll(GuiWToast::isDead)
   }
 
   private fun printLog() {

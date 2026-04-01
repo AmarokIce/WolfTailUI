@@ -1,5 +1,6 @@
-package club.someoneice.wolftail.util
+package club.someoneice.wolftail.dev
 
+import club.someoneice.wolftail.util.ResourceLocationUtil
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import net.minecraft.util.ResourceLocation

@@ -14,8 +14,14 @@ interface IWidgetFunction : IWidget {
    * @param pGui The GuiScreen.
    * @param pMouseX The mouse's position x.
    * @param pMouseY The mouse's position y.
+   * @param pMouseButton The mouse's input key.
+   *
+   * @return Returns true if this widget should record into input pool,
+   *         then it's will accept the [IWidgetFunction.onMousePassed].
    */
-  fun onClick(pGui: Gui, pMouseX: Int, pMouseY: Int) {}
+  fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pMouseButton: Int): Boolean {
+    return false
+  }
 
   /**
    * On mouse passed.
@@ -24,7 +30,11 @@ interface IWidgetFunction : IWidget {
    * @param pMouseX The mouse's position x.
    * @param pMouseY The mouse's position y.
    */
-  fun onPassed(pGui: Gui, pMouseX: Int, pMouseY: Int) {}
+  fun onMousePassed(pGui: Gui, pMouseX: Int, pMouseY: Int) {}
+
+  fun onMouseMove(pGui: Gui, pMouseX: Int, pMouseY: Int, pMouseButton: Int): Boolean {
+    return false
+  }
 
   fun onKeyboardInput(pGui: Gui, keyChar: Char, keyCode: Int) {}
 }
