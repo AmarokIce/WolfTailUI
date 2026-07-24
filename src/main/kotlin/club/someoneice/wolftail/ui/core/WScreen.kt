@@ -6,15 +6,18 @@ import club.someoneice.wolftail.api.IUIStyle
 import club.someoneice.wolftail.api.IWidget
 import club.someoneice.wolftail.ui.widget.WScrollContainer
 import club.someoneice.wolftail.util.UIPos
+import com.google.common.collect.Lists
 import com.google.common.collect.Sets
 import net.minecraft.client.gui.GuiScreen
 import org.lwjgl.input.Mouse
+import java.util.AbstractList
+import java.util.ArrayList
 
 abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
-  protected val widgets: HashSet<IWidget> = Sets.newHashSet()
-  protected val mouseEventWidgets: HashSet<IMouseEventListener> = Sets.newHashSet()
-  protected val keyboardEventWidgets: HashSet<IKeyboardEventListener> = Sets.newHashSet()
-  protected val scrollWidget: HashSet<WScrollContainer> = Sets.newHashSet()
+  protected val widgets: ArrayList<IWidget> = Lists.newArrayList()
+  protected val mouseEventWidgets: ArrayList<IMouseEventListener> = Lists.newArrayList()
+  protected val keyboardEventWidgets: ArrayList<IKeyboardEventListener> = Lists.newArrayList()
+  protected val scrollWidget: ArrayList<WScrollContainer> = Lists.newArrayList()
 
   abstract fun initWidgets()
 

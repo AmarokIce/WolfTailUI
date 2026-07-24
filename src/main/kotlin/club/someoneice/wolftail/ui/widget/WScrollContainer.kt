@@ -5,6 +5,7 @@ import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
 import club.someoneice.wolftail.style.StyleAdapter
 import club.someoneice.wolftail.util.UIPos
+import com.google.common.collect.Lists
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import net.minecraft.client.gui.ScaledResolution
@@ -17,7 +18,7 @@ class WScrollContainer(
   val height: Int,
   val drawBackground: Boolean = true
 ) : IWidget, IMouseEventListener {
-  private val children: MutableList<IWidget> = ArrayList()
+  private val children = Lists.newArrayList<IWidget>()
   private var contentHeight = 0
   var scrollAmount = 0f
     private set
