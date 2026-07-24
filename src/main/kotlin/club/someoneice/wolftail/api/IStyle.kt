@@ -1,6 +1,6 @@
 package club.someoneice.wolftail.api
 
-import club.someoneice.wolftail.style.StyleFont
+import club.someoneice.wolftail.api.style.StyleFont
 import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.ImmutableMap
 import net.minecraft.client.gui.Gui
@@ -8,7 +8,7 @@ import net.minecraft.util.ResourceLocation
 import javax.annotation.CheckForNull
 
 /**
- * @see club.someoneice.wolftail.style.StyleAdapter
+ * @see club.someoneice.wolftail.api.style.StyleAdapter
  */
 interface IStyle {
   /**
@@ -26,7 +26,7 @@ interface IStyle {
   /**
    * Render the background. Remember, you should set up GL11 by your self.
    *
-   * @sample club.someoneice.wolftail.style.StyleToast.render
+   * @sample club.someoneice.wolftail.api.style.StyleToast.render
    */
   fun render(pGui: Gui, rect: UIPos, pGuiX: Int, pGuiY: Int, args: Map<String, Any> = ImmutableMap.of())
 

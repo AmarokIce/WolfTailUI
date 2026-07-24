@@ -2,15 +2,13 @@ package club.someoneice.wolftail.ui.core
 
 import club.someoneice.wolftail.api.IKeyboardEventListener
 import club.someoneice.wolftail.api.IMouseEventListener
-import club.someoneice.wolftail.api.IUIStyle
+import club.someoneice.wolftail.api.style.IUIStyle
 import club.someoneice.wolftail.api.IWidget
 import club.someoneice.wolftail.ui.widget.WScrollContainer
 import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.Lists
-import com.google.common.collect.Sets
 import net.minecraft.client.gui.GuiScreen
 import org.lwjgl.input.Mouse
-import java.util.AbstractList
 import java.util.ArrayList
 
 abstract class WScreen(val w: Int, val h: Int): GuiScreen() {

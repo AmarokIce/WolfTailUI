@@ -1,6 +1,5 @@
-package club.someoneice.wolftail.style
+package club.someoneice.wolftail.api.style
 
-import club.someoneice.wolftail.api.IUIStyle
 import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.Lists
 import net.minecraft.client.Minecraft

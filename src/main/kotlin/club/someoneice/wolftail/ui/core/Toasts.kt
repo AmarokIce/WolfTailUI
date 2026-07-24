@@ -1,8 +1,8 @@
-package club.someoneice.wolftail.dev
+package club.someoneice.wolftail.ui.core
 
 import club.someoneice.wolftail.WolfTailUI
 import club.someoneice.wolftail.api.IToast
-import club.someoneice.wolftail.style.StyleToast
+import club.someoneice.wolftail.api.style.StyleToast
 import club.someoneice.wolftail.ui.GuiWToast
 import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.client.gui.Gui

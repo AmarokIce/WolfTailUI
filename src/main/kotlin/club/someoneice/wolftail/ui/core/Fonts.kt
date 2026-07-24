@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.dev
+package club.someoneice.wolftail.ui.core
 
 import club.someoneice.wolftail.util.UtilResourceLocation
 import com.google.common.cache.Cache
@@ -10,7 +10,7 @@ import java.awt.Font
 import java.awt.image.BufferedImage
 import java.util.concurrent.TimeUnit
 
-object FontManager {
+object Fonts {
   val EMPTY_IMAGE = BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB)
   val FONTS = mutableMapOf<String, ResourceLocation>()
   val CACHE_FONTS: Cache<String, Font> = CacheBuilder

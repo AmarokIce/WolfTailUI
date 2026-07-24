@@ -1,6 +1,6 @@
-package club.someoneice.wolftail.constant
+package club.someoneice.wolftail.api.constant
 import club.someoneice.wolftail.api.StyleType
-import club.someoneice.wolftail.style.StyleToast
+import club.someoneice.wolftail.api.style.StyleToast
 import club.someoneice.wolftail.util.UtilResourceLocation
 
 object DefaultStyleToast {

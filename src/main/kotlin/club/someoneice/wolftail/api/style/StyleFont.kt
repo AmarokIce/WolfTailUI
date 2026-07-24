@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.style
+package club.someoneice.wolftail.api.style
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui

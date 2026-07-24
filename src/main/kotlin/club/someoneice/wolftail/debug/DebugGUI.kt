@@ -1,7 +1,7 @@
 package club.someoneice.wolftail.debug
 
-import club.someoneice.wolftail.api.IUIStyle
-import club.someoneice.wolftail.style.StyleAdapter
+import club.someoneice.wolftail.api.style.IUIStyle
+import club.someoneice.wolftail.api.style.StyleAdapter
 import club.someoneice.wolftail.ui.core.WScreen
 import club.someoneice.wolftail.ui.widget.WScrollContainer
 import club.someoneice.wolftail.ui.widget.WString

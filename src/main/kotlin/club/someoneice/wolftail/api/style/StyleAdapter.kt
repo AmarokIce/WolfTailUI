@@ -1,7 +1,6 @@
-package club.someoneice.wolftail.style
+package club.someoneice.wolftail.api.style
 
 import club.someoneice.wolftail.api.IStyle
-import club.someoneice.wolftail.api.IUIStyle
 import club.someoneice.wolftail.api.IWidget
 import club.someoneice.wolftail.util.UIPos
 import net.minecraft.client.Minecraft

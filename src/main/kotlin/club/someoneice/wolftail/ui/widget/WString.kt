@@ -2,7 +2,7 @@ package club.someoneice.wolftail.ui.widget
 
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
-import club.someoneice.wolftail.style.StyleFont
+import club.someoneice.wolftail.api.style.StyleFont
 import club.someoneice.wolftail.util.UIPos
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui

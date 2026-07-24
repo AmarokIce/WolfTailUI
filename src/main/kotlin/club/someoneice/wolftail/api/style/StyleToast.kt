@@ -1,7 +1,7 @@
-package club.someoneice.wolftail.style
+package club.someoneice.wolftail.api.style
 
 import club.someoneice.wolftail.api.IStyle
-import club.someoneice.wolftail.constant.DefaultStyleToast
+import club.someoneice.wolftail.api.constant.DefaultStyleToast
 import club.someoneice.wolftail.util.UIPos
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui

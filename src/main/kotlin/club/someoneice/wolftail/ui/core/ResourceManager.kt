@@ -1,4 +1,4 @@
-package club.someoneice.wolftail.dev
+package club.someoneice.wolftail.ui.core
 
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
@@ -8,8 +8,16 @@ import java.awt.image.BufferedImage
 import kotlin.math.max
 import kotlin.math.min
 
-object ResourceTextureManager {
+object ResourceManager {
   private val DATA_MAP: MutableMap<ResourceLocation, ResourceLocation> = HashMap()
+
+  fun hasTexture(resourceLocation: ResourceLocation): Boolean {
+    return DATA_MAP.containsKey(resourceLocation)
+  }
+
+  fun hasResource(resourceLocation: ResourceLocation): Boolean {
+    return DATA_MAP.containsValue(resourceLocation)
+  }
 
   fun createDynamicTexture(registerName: ResourceLocation, image: BufferedImage): ResourceLocation {
     if (DATA_MAP.containsKey(registerName)) {

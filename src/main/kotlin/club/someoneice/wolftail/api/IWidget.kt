@@ -11,7 +11,7 @@ interface IWidget {
   /**
    * Render the background. Remember, you should set up GL11.
    *
-   * @sample club.someoneice.wolftail.style.StyleToast.render
+   * @sample club.someoneice.wolftail.api.style.StyleToast.render
    */
   fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int)
 

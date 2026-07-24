@@ -1,6 +1,6 @@
 package club.someoneice.wolftail.api
 
-import club.someoneice.wolftail.style.StyleToast
+import club.someoneice.wolftail.api.style.StyleToast
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
 

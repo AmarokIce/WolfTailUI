@@ -3,7 +3,7 @@ package club.someoneice.wolftail.ui.widget
 import club.someoneice.wolftail.api.IMouseEventListener
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
-import club.someoneice.wolftail.style.StyleAdapter
+import club.someoneice.wolftail.api.style.StyleAdapter
 import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.Lists
 import net.minecraft.client.Minecraft

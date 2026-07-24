@@ -1,7 +1,7 @@
 package club.someoneice.wolftail
 
 import club.someoneice.wolftail.debug.DebugHelper
-import club.someoneice.wolftail.dev.Toasts.TOAST_SET
+import club.someoneice.wolftail.ui.core.Toasts.TOAST_SET
 import club.someoneice.wolftail.ui.GuiWToast
 import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.Mod

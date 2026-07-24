@@ -1,5 +1,6 @@
-package club.someoneice.wolftail.api
+package club.someoneice.wolftail.api.style
 
+import club.someoneice.wolftail.api.IStyle
 import com.google.common.collect.ImmutableMap
 import net.minecraft.client.gui.Gui
 

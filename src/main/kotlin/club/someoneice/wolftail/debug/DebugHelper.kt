@@ -1,8 +1,7 @@
 package club.someoneice.wolftail.debug
 
-import club.someoneice.wolftail.WolfTailUI
-import club.someoneice.wolftail.constant.DefaultStyleToast
-import club.someoneice.wolftail.dev.Toasts
+import club.someoneice.wolftail.api.constant.DefaultStyleToast
+import club.someoneice.wolftail.ui.core.Toasts
 import net.minecraft.client.Minecraft
 import net.minecraft.init.Items
 
