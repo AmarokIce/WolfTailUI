@@ -1,6 +1,6 @@
 package club.someoneice.wolftail.dev
 
-import club.someoneice.wolftail.util.ResourceLocationUtil
+import club.someoneice.wolftail.util.UtilResourceLocation
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
 import net.minecraft.util.ResourceLocation
@@ -30,7 +30,7 @@ object FontManager {
 
     val font = (CACHE_FONTS.getIfPresent(fontName) ?: run {
       val fontPath = FONTS[fontName]!!
-      val path = ResourceLocationUtil.getPathFrom(fontPath)
+      val path = UtilResourceLocation.getPathFrom(fontPath)
       val stream =
         javaClass.classLoader.getResourceAsStream(path) ?: return EMPTY_IMAGE
       val font = Font.createFont(Font.TRUETYPE_FONT, stream)

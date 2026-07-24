@@ -1,14 +1,14 @@
 package club.someoneice.wolftail.ui.widget
 
 import club.someoneice.wolftail.api.IStyle
-import club.someoneice.wolftail.api.IWidgetFunction
+import club.someoneice.wolftail.api.IWidget
+import club.someoneice.wolftail.util.UIPos
 import net.minecraft.client.gui.Gui
-import org.lwjgl.util.Rectangle
 
 // TODO
 // 支持网络图像，支持本地图像，支持 GIF
-class WImage: IWidgetFunction {
-  override fun weightPos(): Rectangle {
+class WImage : IWidget {
+  override fun weightPos(): UIPos {
     TODO("Not yet implemented")
   }
 

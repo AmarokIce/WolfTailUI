@@ -1,5 +1,6 @@
 package club.someoneice.wolftail
 
+import club.someoneice.wolftail.debug.DebugHelper
 import club.someoneice.wolftail.dev.Toasts.TOAST_SET
 import club.someoneice.wolftail.ui.GuiWToast
 import cpw.mods.fml.common.FMLCommonHandler
@@ -7,10 +8,14 @@ import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import cpw.mods.fml.common.event.FMLPreInitializationEvent
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
+import cpw.mods.fml.common.gameevent.InputEvent
 import cpw.mods.fml.common.gameevent.TickEvent
+import net.minecraft.launchwrapper.Launch
 import net.minecraftforge.common.MinecraftForge
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
+import org.lwjgl.input.Keyboard
+
 
 @Suppress("unused")
 @Mod(modid = WolfTailUI.ID, modLanguage = "kotlin")
@@ -19,11 +24,19 @@ class WolfTailUI {
     const val ID = "wolftail"
     const val NAME = "WolfTail UI"
     val LOG: Logger = LogManager.getLogger(ID)
+
+    val isDevEnvironment: Boolean
+      get() = (Launch.blackboard["fml.deobfuscatedEnvironment"] as? Boolean) == true
   }
 
   @Mod.EventHandler
   fun perInit(event: FMLPreInitializationEvent) {
     printLog()
+
+    if (isDevEnvironment) {
+      LOG.info("[Info] WolfTail UI is ready for debugging.")
+      LOG.debug("[Debug] WolfTail UI is ready for debugging.")
+    }
 
     MinecraftForge.EVENT_BUS.register(this)
     FMLCommonHandler.instance().bus().register(this)
@@ -43,6 +56,17 @@ class WolfTailUI {
 
     TOAST_SET.forEach(GuiWToast::tick)
     TOAST_SET.removeAll(GuiWToast::isDead)
+  }
+
+  @SubscribeEvent
+  fun onKeyInput(event: InputEvent.KeyInputEvent) {
+    if (!isDevEnvironment) {
+      return
+    }
+
+    if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
+      DebugHelper.debugJoinpoint()
+    }
   }
 
   private fun printLog() {

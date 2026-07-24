@@ -197,5 +197,14 @@ java {
   withSourcesJar()
 }
 
+publisherMineBBS {
+  token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtYl9pZCI6Ijg3NjY3IiwiYXBpX2tleSI6IkNkN3k3bkZOS2piTGc3ZG5SNWs5Tm9ERWFxMG8wRndDIiwiZXhwIjo0OTI4NjU5MDMyLCJpc3MiOiJOeWFuQ2F0ZGEifQ.Bq6YNjGl6z5bwkhKfGdupCQDo6JJpBQDIicBmbcEPYc"
+  projectId = 12001
+  title = "[自动推送] ${project.modVersion} （Url 推送）"
+  version = project.modVersion
+  description = "这是一次自动推送更新。详情请见百科。"
+  url = "https://www.curseforge.com/minecraft/mc-mods/wolftailui/"
+}
+
 
 apply from: "publishing.gradle"

@@ -10,29 +10,36 @@ open class StyleFont(private val color: Color = Color.WHITE,
                      private val shadowColor: Color = Color.GRAY,
                      private val highlightShadowColor: Color = Color.GRAY
 ) : StyleAdapter() {
-  override fun drawString(
-    pString: String,
-    pGui: Gui,
-    x: Int,
-    y: Int,
-    args: Map<String, Any>
-  ) {
-    val highlight = args.containsKey("highlight") && args["highlight"] == true
+  override fun drawString(pString: String, pGui: Gui, x: Int, y: Int, pGuiX: Int, pGuiY: Int, args: Map<String, Any>) {
+    val highlight =
+      args.containsKey("highlight") && args["highlight"] == true
+
     val color =
-      if (args.containsKey("color")) Color(args["color"] as Int)
-      else if (highlight) this.highlightColor else this.color
+      if (args.containsKey("color")) {
+        Color(args["color"] as Int)
+      } else if (highlight) {
+        this.highlightColor
+      } else {
+        this.color
+      }
+
     val shadowColor =
-      if (args.containsKey("shadowColor")) Color(args["shadowColor"] as Int)
-      else if (highlight) this.highlightShadowColor else this.shadowColor
+      if (args.containsKey("shadowColor")) {
+        Color(args["shadowColor"] as Int)
+      } else if (highlight) {
+        this.highlightShadowColor
+      } else {
+        this.shadowColor
+      }
 
     val font = Minecraft.getMinecraft().fontRenderer
     val hasShadow = this.hasShadow || (args.containsKey("shadow") && args["shadow"] == true)
 
     if (hasShadow) {
-      font.drawString(pString, x + 1, y + 1, shadowColor.rgb)
+      font.drawString(pString, x + 1 + pGuiX, y + 1 + pGuiY, shadowColor.rgb)
     }
 
-    font.drawString(pString, x, y, color.rgb)
+    font.drawString(pString, x + pGuiX, y + pGuiY, color.rgb)
   }
 
   companion object {

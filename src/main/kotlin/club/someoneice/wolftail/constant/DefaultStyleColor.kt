@@ -3,7 +3,7 @@ package club.someoneice.wolftail.constant
 import java.awt.Color
 
 // 预设的明暗配色。
-object DefalutStyleColor {
+object DefaultStyleColor {
     val COLOR_BLACK_0 = Color(59, 66, 82, 255)
     val COLOR_BLACK_1 = Color(42, 56, 64, 255)
 

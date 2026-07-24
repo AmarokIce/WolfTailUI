@@ -1,6 +1,7 @@
 package club.someoneice.wolftail.ui
 
 import club.someoneice.wolftail.api.IToast
+import club.someoneice.wolftail.util.UIPos
 import cpw.mods.fml.common.registry.GameRegistry
 import cpw.mods.fml.relauncher.Side
 import cpw.mods.fml.relauncher.SideOnly
@@ -32,14 +33,14 @@ class GuiWToast(val toast: IToast) : Gui() {
     val x = scaleW - (160 * getXFactor()).toInt()
     val y = indexY
 
-    style.render(this, x, y)
+    style.render(this, UIPos(x, y, 0, 0), 0, 0)
 
     style.drawString(
       I18n.format(this.toast.getToastTitle()),
-      this, x + 30, y + 6, mapOf("flag" to "title"))
+      this, x + 30, y + 6, 0, 0, mapOf("flag" to "title"))
     style.drawString(
       I18n.format(this.toast.getToastText()),
-      this, x + 30, y + 17, mapOf("flag" to "text"))
+      this, x + 30, y + 17, 0, 0, mapOf("flag" to "text"))
 
     if (this.toast.byItemStack()) {
       renderItemStack(x + 8, y + 8)
@@ -50,7 +51,7 @@ class GuiWToast(val toast: IToast) : Gui() {
     GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT)
 
     lessAliveTick--
-    indexY += style.getUIRange().height
+    indexY += style.getUIRange().h
   }
 
   fun renderIcon(rl: ResourceLocation, x: Int, y: Int) {

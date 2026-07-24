@@ -1,34 +1,34 @@
 package club.someoneice.wolftail.ui.widget
 
+import club.someoneice.wolftail.api.IMouseEventListener
 import club.someoneice.wolftail.api.IStyle
-import club.someoneice.wolftail.api.IWidgetFunction
+import club.someoneice.wolftail.api.IWidget
+import club.someoneice.wolftail.util.UIPos
 import net.minecraft.client.gui.Gui
-import org.lwjgl.util.Rectangle
 
 open class WSwitch(
-  private val pos: Rectangle,
+  private val pos: UIPos,
   private val style: IStyle
-) : IWidgetFunction {
+) : IWidget, IMouseEventListener {
   constructor(
     x: Int,
     y: Int,
     width: Int,
     height: Int,
     style: IStyle
-  ): this(Rectangle(x, y, width, height), style)
+  ) : this(UIPos(x, y, width, height), style)
 
   private var isOn = false
 
-  override fun weightPos(): Rectangle = this.pos
+  override fun weightPos(): UIPos = this.pos
   override fun getStyle(): IStyle = this.style
 
   override fun canBeClick(): Boolean {
     return true
   }
 
-  override fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pMouseButton: Int): Boolean {
+  override fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int, pMouseButton: Int) {
     this.isOn = !this.isOn
-    return false
   }
 
   override fun render(
@@ -40,8 +40,9 @@ open class WSwitch(
   ) {
     val flag = this.isInRange(pMouseX, pMouseY, pGuiX, pGuiY)
 
-    this.getStyle().render(pGui, pMouseX, pMouseY,
-      pGuiX + this.weightPos().x, pGuiY + this.weightPos().y,
-      mapOf("highlight" to flag, "isOn" to this.isOn))
+    this.getStyle().render(
+      pGui, this.weightPos(), pGuiX, pGuiY,
+      mapOf("highlight" to flag, "isOn" to this.isOn)
+    )
   }
 }
