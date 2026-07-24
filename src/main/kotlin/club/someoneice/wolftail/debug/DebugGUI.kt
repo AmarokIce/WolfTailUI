@@ -1,6 +1,6 @@
 package club.someoneice.wolftail.debug
 
-import club.someoneice.wolftail.api.style.IUIStyle
+import club.someoneice.wolftail.api.style.IStyleUI
 import club.someoneice.wolftail.api.style.StyleAdapter
 import club.someoneice.wolftail.ui.core.WScreen
 import club.someoneice.wolftail.ui.widget.WScrollContainer
@@ -44,5 +44,5 @@ class DebugGUI: WScreen(196, 168) {
     return false
   }
 
-  override fun getStyle(): IUIStyle = StyleAdapter.EMPTY_UI_STYLE
+  override fun getStyle(): IStyleUI = StyleAdapter.EMPTY_UI_STYLE
 }

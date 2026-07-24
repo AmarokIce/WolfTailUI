@@ -27,15 +27,10 @@ open class WButton(
   override fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
     val highlight = this.isInRange(pMouseX, pMouseY, pGuiX, pGuiY)
 
-    this.style.render(pGui, this.weightPos(), pGuiX, pGuiY, mapOf("highlight" to highlight))
-    this.style.drawString(
-      title,
-      pGui,
-      this.weightPos().x,
-      this.weightPos().y,
-      pGuiX,
-      pGuiY,
-      mapOf("highlight" to highlight)
-    )
+    this.style.render(pGui, this.weightPos(), pGuiX, pGuiY,
+      mapOf(
+        "highlight" to highlight,
+        "title" to title
+      ))
   }
 }

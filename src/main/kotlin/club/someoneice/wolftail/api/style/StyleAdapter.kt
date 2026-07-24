@@ -19,8 +19,8 @@ abstract class StyleAdapter: IStyle {
     Minecraft.getMinecraft().fontRenderer.drawString(pString, x, y, Color.WHITE.rgb)
   }
 
-  fun asEmptyUIStyle(): IUIStyle {
-    return object : IUIStyle {
+  fun asEmptyUIStyle(): IStyleUI {
+    return object : IStyleUI {
       override fun getTexture(): ResourceLocation = IWidget.DEF_RESOURCE
       override fun render(
         pGui: Gui,
@@ -44,6 +44,6 @@ abstract class StyleAdapter: IStyle {
 
   companion object {
     val EMPTY_STYLE = object : StyleAdapter() {}
-    val EMPTY_UI_STYLE: IUIStyle = EMPTY_STYLE.asEmptyUIStyle()
+    val EMPTY_UI_STYLE: IStyleUI = EMPTY_STYLE.asEmptyUIStyle()
   }
 }

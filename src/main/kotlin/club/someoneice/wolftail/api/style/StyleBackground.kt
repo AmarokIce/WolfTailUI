@@ -9,9 +9,9 @@ import org.lwjgl.opengl.GL11
 
 class StyleBackground(
   private val texture: ResourceLocation,
-  private val slotRenderer: (IUIStyle, Gui, Int, Int, Map<String, Any>) -> Unit,
-  private val backgroundRenderer: (IUIStyle, Gui, Int, Int, Int, Int, Int, Int, Map<String, Any>) -> Unit
-): IUIStyle {
+  private val slotRenderer: (IStyleUI, Gui, Int, Int, Map<String, Any>) -> Unit,
+  private val backgroundRenderer: (IStyleUI, Gui, Int, Int, Int, Int, Int, Int, Map<String, Any>) -> Unit
+): IStyleUI {
 /* TODO()
     constructor(
     texture: ResourceLocation,
@@ -44,7 +44,7 @@ class StyleBackground(
   }
 
   companion object {
-    private fun defaultSlotRenderer(slotRange: UIPos): (IUIStyle, Gui, Int, Int, Map<String, Any>) -> Unit =
+    private fun defaultSlotRenderer(slotRange: UIPos): (IStyleUI, Gui, Int, Int, Map<String, Any>) -> Unit =
       { pStyle, pGui, pX, pY, args ->
         GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
         GL11.glEnable(GL11.GL_TEXTURE_2D)
@@ -64,7 +64,7 @@ class StyleBackground(
       bgDownLeft: UIPos,
       bgDown: UIPos,
       bgDownRight: UIPos
-    ): (IUIStyle, Gui, Int, Int, Int, Int, Map<String, Any>) -> Unit =
+    ): (IStyleUI, Gui, Int, Int, Int, Int, Map<String, Any>) -> Unit =
       { pStyle, pGui, pX, pY, pW, pH, args ->
         val renderList: MutableList<TileCommand> =
           Lists.newArrayListWithExpectedSize((pW / bgUpLeft.w + 1) * (pH / bgUpLeft.h + 1))

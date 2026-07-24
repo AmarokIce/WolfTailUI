@@ -2,7 +2,7 @@ package club.someoneice.wolftail.ui.core
 
 import club.someoneice.wolftail.api.IKeyboardEventListener
 import club.someoneice.wolftail.api.IMouseEventListener
-import club.someoneice.wolftail.api.style.IUIStyle
+import club.someoneice.wolftail.api.style.IStyleUI
 import club.someoneice.wolftail.api.IWidget
 import club.someoneice.wolftail.ui.widget.WScrollContainer
 import club.someoneice.wolftail.util.UIPos
@@ -19,7 +19,7 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
 
   abstract fun initWidgets()
 
-  abstract fun getStyle(): IUIStyle
+  abstract fun getStyle(): IStyleUI
 
   abstract fun render(mouseX: Int, mouseY: Int, partialTicks: Float)
 

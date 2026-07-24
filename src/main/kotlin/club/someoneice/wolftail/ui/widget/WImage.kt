@@ -1,16 +1,16 @@
 package club.someoneice.wolftail.ui.widget
 
-import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
+import club.someoneice.wolftail.api.style.IStyleImage
 import club.someoneice.wolftail.util.UIPos
 import net.minecraft.client.gui.Gui
 
-// TODO
-// 支持网络图像，支持本地图像，支持 GIF
-class WImage : IWidget {
-  override fun weightPos(): UIPos {
-    TODO("Not yet implemented")
-  }
+open class WImage(
+  private val pos: UIPos,
+  private val style: IStyleImage
+) : IWidget {
+  override fun weightPos(): UIPos = this.pos
+  override fun getStyle(): IStyleImage = this.style
 
   override fun render(
     pGui: Gui,
@@ -19,10 +19,6 @@ class WImage : IWidget {
     pGuiX: Int,
     pGuiY: Int
   ) {
-    TODO("Not yet implemented")
-  }
-
-  override fun getStyle(): IStyle {
-    TODO("Not yet implemented")
+    this.style.render(pGui, this.pos, pGuiX, pGuiY)
   }
 }
