@@ -3,9 +3,9 @@ package club.someoneice.wolftail.json
 import club.someoneice.json.node.JsonNode
 import club.someoneice.json.node.MapNode
 import club.someoneice.wolftail.api.IStyle
-import club.someoneice.wolftail.ui.core.ResourceManager
 import club.someoneice.wolftail.api.style.StyleFont
 import club.someoneice.wolftail.api.style.StyleToast
+import club.someoneice.wolftail.ui.core.ResourceManager
 import net.minecraft.util.ResourceLocation
 import java.io.File
 import java.io.FileNotFoundException

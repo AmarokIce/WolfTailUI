@@ -9,14 +9,16 @@ import net.minecraft.client.gui.Gui
 import java.awt.Color
 
 open class WString(
-  private val title: String,
-  private val x: Int,
-  private val y: Int,
+  protected val title: String,
+  protected val x: Int,
+  protected val y: Int,
   private val style: IStyle = StyleFont.INSTANCE,
-  private val hasHighlight: Boolean = false
+  protected val hasHighlight: Boolean = false
 ) : IWidget {
   constructor(
-    title: String, x: Int, y: Int,
+    title: String,
+    x: Int,
+    y: Int,
     color: Color = Color.WHITE,
     shadowColor: Color = Color.GRAY,
     highlightColor: Color = Color.BLUE,
@@ -45,7 +47,7 @@ open class WString(
   override fun weightPos(): UIPos = this.pos
 
   override fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
-    val highlight = if (hasHighlight) isInRange(pMouseX, pMouseY, pGuiX, pGuiY) else false
+    val highlight = hasHighlight && isInRange(pMouseX, pMouseY, pGuiX, pGuiY)
     val tPos = this.weightPos()
     style.drawString(
       this.title, pGui, tPos.x, tPos.y, pGuiX, pGuiY,

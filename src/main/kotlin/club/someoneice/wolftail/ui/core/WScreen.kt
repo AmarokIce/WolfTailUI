@@ -2,20 +2,23 @@ package club.someoneice.wolftail.ui.core
 
 import club.someoneice.wolftail.api.IKeyboardEventListener
 import club.someoneice.wolftail.api.IMouseEventListener
-import club.someoneice.wolftail.api.style.IStyleUI
+import club.someoneice.wolftail.api.ITooltip
 import club.someoneice.wolftail.api.IWidget
-import club.someoneice.wolftail.ui.widget.WScrollContainer
+import club.someoneice.wolftail.api.style.IStyleUI
+import club.someoneice.wolftail.ui.widget.WScrollList
 import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.Lists
+import net.minecraft.client.gui.FontRenderer
 import net.minecraft.client.gui.GuiScreen
 import org.lwjgl.input.Mouse
-import java.util.ArrayList
+import java.util.*
 
 abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
   protected val widgets: ArrayList<IWidget> = Lists.newArrayList()
   protected val mouseEventWidgets: ArrayList<IMouseEventListener> = Lists.newArrayList()
   protected val keyboardEventWidgets: ArrayList<IKeyboardEventListener> = Lists.newArrayList()
-  protected val scrollWidget: ArrayList<WScrollContainer> = Lists.newArrayList()
+  protected val scrollWidget: ArrayList<WScrollList> = Lists.newArrayList()
+  protected var inMouseWidget: IMouseEventListener? = null
 
   abstract fun initWidgets()
 
@@ -33,14 +36,19 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
       keyboardEventWidgets.add(widget)
     }
 
-    if (widget is WScrollContainer) {
+    if (widget is WScrollList) {
       scrollWidget.add(widget)
     }
   }
 
+  /* protected -> public */
+  public override fun drawHoveringText(list: List<*>, pMouseX: Int, pMouseY: Int, font: FontRenderer) {
+    super.drawHoveringText(list, pMouseX, pMouseY, font)
+  }
+
   override fun drawBackground(sign: Int) {
-    val x: Int = (this.width - this.w) / 2
-    val y: Int = (this.height - this.h) / 2
+    val x: Int = if (this.w == -1) 0 else (this.width - this.w) / 2
+    val y: Int = if (this.h == -1) 0 else (this.height - this.h) / 2
     this.getStyle().render(this, UIPos(x, y, w, h), 0, 0)
   }
 
@@ -48,10 +56,15 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
     super.drawScreen(mouseX, mouseY, partialTicks)
     this.drawBackground(0)
 
-    val x: Int = (this.width - this.w) / 2
-    val y: Int = (this.height - this.h) / 2
+    val x: Int = if (this.w == -1) 0 else (this.width - this.w) / 2
+    val y: Int = if (this.h == -1) 0 else (this.height - this.h) / 2
     this.widgets.forEach {
       it.render(this, mouseX, mouseY, x, y)
+
+      if (it is ITooltip && it.isInRange(mouseX, mouseY, x, y)) {
+        val list = it.getData()
+        this.drawHoveringText(list, mouseX, mouseY, this.fontRendererObj)
+      }
     }
 
     render(mouseX, mouseY, partialTicks)
@@ -76,37 +89,53 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
   }
 
   override fun mouseClicked(pMouseX: Int, pMouseY: Int, pMouseKeyInput: Int) {
-    if (pMouseKeyInput != 0) {
-      return
-    }
-
-    val x: Int = (this.width - this.w) / 2
-    val y: Int = (this.height - this.h) / 2
+    val x: Int = if (this.w == -1) 0 else (this.width - this.w) / 2
+    val y: Int = if (this.h == -1) 0 else (this.height - this.h) / 2
 
     val mouseEvent = this.mouseEventWidgets
       .filter(IMouseEventListener::canBeClick)
 
-    val inRange = mouseEvent.firstOrNull {
+    mouseEvent.firstOrNull {
       it.isInRange(pMouseX, pMouseY, x, y)
+    }?.let {
+      it.onMouseClicked(this, pMouseX, pMouseY,x , y, pMouseKeyInput)
+      this.inMouseWidget = it
     }
-
-    mouseEvent.forEach {
-      if (it == inRange) {
-        it.onMouseClicked(this, pMouseX, pMouseY,x , y, pMouseKeyInput)
-        return@forEach
-      }
-
-      it.onMousePressed(this, pMouseX, pMouseY, x, y)
-    }
-
   }
+
+
 
   override fun mouseMovedOrUp(pMouseX: Int, pMouseY: Int, opt: Int) {
-    // TODO
+    super.mouseMovedOrUp(pMouseX, pMouseY, opt)
+    if (Objects.isNull(this.inMouseWidget) || opt != 0) {
+      return
+    }
+
+    val x: Int = if (this.w == -1) 0 else (this.width - this.w) / 2
+    val y: Int = if (this.h == -1) 0 else (this.height - this.h) / 2
+    this.inMouseWidget!!.onMouseReleased(this, pMouseX, pMouseY, x, y)
+    this.inMouseWidget = null
   }
 
-  override fun keyTyped(p_73869_1_: Char, p_73869_2_: Int) {
-    super.keyTyped(p_73869_1_, p_73869_2_)
+  override fun mouseClickMove(pMouseX: Int, pMouseY: Int, pMouseButton: Int, time: Long) {
+    super.mouseClickMove(pMouseX, pMouseY, pMouseButton, time)
+    if (Objects.isNull(this.inMouseWidget)) {
+      return
+    }
+
+    val x: Int = if (this.w == -1) 0 else (this.width - this.w) / 2
+    val y: Int = if (this.h == -1) 0 else (this.height - this.h) / 2
+    this.inMouseWidget!!.onMouseMove(this, pMouseX, pMouseY)
+  }
+
+  override fun keyTyped(char: Char, keyCode: Int) {
+    val x: Int = if (this.w == -1) 0 else (this.width - this.w) / 2
+    val y: Int = if (this.h == -1) 0 else (this.height - this.h) / 2
+
+    keyboardEventWidgets.forEach {
+      it.onKeyboardInput(this, char, keyCode, x, y)
+    }
+    super.keyTyped(char, keyCode)
   }
 
   override fun initGui() {

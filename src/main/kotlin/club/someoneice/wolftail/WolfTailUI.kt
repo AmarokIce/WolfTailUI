@@ -1,20 +1,18 @@
 package club.someoneice.wolftail
 
-import club.someoneice.wolftail.debug.DebugHelper
-import club.someoneice.wolftail.ui.core.Toasts.TOAST_SET
+import club.someoneice.wolftail.debug.DebugJoinPoint
 import club.someoneice.wolftail.ui.GuiWToast
+import club.someoneice.wolftail.ui.core.Toasts.TOAST_SET
 import cpw.mods.fml.common.FMLCommonHandler
 import cpw.mods.fml.common.Mod
 import cpw.mods.fml.common.event.FMLInitializationEvent
 import cpw.mods.fml.common.event.FMLPreInitializationEvent
 import cpw.mods.fml.common.eventhandler.SubscribeEvent
-import cpw.mods.fml.common.gameevent.InputEvent
 import cpw.mods.fml.common.gameevent.TickEvent
 import net.minecraft.launchwrapper.Launch
 import net.minecraftforge.common.MinecraftForge
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import org.lwjgl.input.Keyboard
 
 
 @Suppress("unused")
@@ -31,15 +29,17 @@ class WolfTailUI {
 
   @Mod.EventHandler
   fun perInit(event: FMLPreInitializationEvent) {
-    printLog()
+    this.printLog()
+
+    MinecraftForge.EVENT_BUS.register(this)
+    FMLCommonHandler.instance().bus().register(this)
 
     if (isDevEnvironment) {
       LOG.info("[Info] WolfTail UI is ready for debugging.")
       LOG.debug("[Debug] WolfTail UI is ready for debugging.")
+      MinecraftForge.EVENT_BUS.register(DebugJoinPoint)
+      FMLCommonHandler.instance().bus().register(DebugJoinPoint)
     }
-
-    MinecraftForge.EVENT_BUS.register(this)
-    FMLCommonHandler.instance().bus().register(this)
   }
 
   @Mod.EventHandler
@@ -56,17 +56,6 @@ class WolfTailUI {
 
     TOAST_SET.forEach(GuiWToast::tick)
     TOAST_SET.removeAll(GuiWToast::isDead)
-  }
-
-  @SubscribeEvent
-  fun onKeyInput(event: InputEvent.KeyInputEvent) {
-    if (!isDevEnvironment) {
-      return
-    }
-
-    if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
-      DebugHelper.debugJoinpoint()
-    }
   }
 
   private fun printLog() {

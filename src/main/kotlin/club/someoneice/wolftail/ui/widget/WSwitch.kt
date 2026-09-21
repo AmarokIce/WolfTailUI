@@ -17,8 +17,7 @@ open class WSwitch(
     height: Int,
     style: IStyle
   ) : this(UIPos(x, y, width, height), style)
-
-  private var isOn = false
+  protected var isOn = false
 
   override fun weightPos(): UIPos = this.pos
   override fun getStyle(): IStyle = this.style

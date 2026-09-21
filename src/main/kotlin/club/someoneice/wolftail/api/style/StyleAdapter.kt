@@ -9,6 +9,10 @@ import net.minecraft.util.ResourceLocation
 import java.awt.Color
 
 abstract class StyleAdapter: IStyle {
+  companion object {
+    val INSTANCE: IStyle = object: StyleAdapter() {}
+  }
+
   override fun getUIRange(): UIPos = IWidget.POS_ZERO
   override fun getTexture(): ResourceLocation = IWidget.DEF_RESOURCE
 
@@ -17,33 +21,5 @@ abstract class StyleAdapter: IStyle {
 
   override fun drawString(pString: String, pGui: Gui, x: Int, y: Int, pGuiX: Int, pGuiY: Int, args: Map<String, Any>) {
     Minecraft.getMinecraft().fontRenderer.drawString(pString, x, y, Color.WHITE.rgb)
-  }
-
-  fun asEmptyUIStyle(): IStyleUI {
-    return object : IStyleUI {
-      override fun getTexture(): ResourceLocation = IWidget.DEF_RESOURCE
-      override fun render(
-        pGui: Gui,
-        rect: UIPos,
-        pGuiX: Int,
-        pGuiY: Int,
-        args: Map<String, Any>
-      ) {
-        this@StyleAdapter.render(pGui, rect, pGuiX, pGuiY, args)
-      }
-
-      override fun drawSlot(
-        pGui: Gui,
-        x: Int,
-        y: Int,
-        args: Map<String, Any>
-      ) {
-      }
-    }
-  }
-
-  companion object {
-    val EMPTY_STYLE = object : StyleAdapter() {}
-    val EMPTY_UI_STYLE: IStyleUI = EMPTY_STYLE.asEmptyUIStyle()
   }
 }

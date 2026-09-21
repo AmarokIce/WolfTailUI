@@ -1,10 +1,34 @@
 package club.someoneice.wolftail.api.style
 
 import club.someoneice.wolftail.api.IStyle
+import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.ImmutableMap
 import net.minecraft.client.gui.Gui
+import net.minecraft.util.ResourceLocation
 
 interface IStyleUI: IStyle {
-  // FIXME pGuiX & pGuiY
-  fun drawSlot(pGui: Gui, x: Int, y: Int, args: Map<String, Any> = ImmutableMap.of())
+  companion object {
+    val INSTANCE: IStyleUI = object : IStyleUI {
+      override fun getTexture(): ResourceLocation? = null
+
+      override fun drawSlot(
+        pGui: Gui,
+        pPosX: Int, pPosY: Int,
+        pGuiX: Int, pGuiY: Int,
+        args: Map<String, Any>
+      ) {
+      }
+
+      override fun render(
+        pGui: Gui,
+        rect: UIPos,
+        pGuiX: Int,
+        pGuiY: Int,
+        args: Map<String, Any>
+      ) {
+      }
+    }
+  }
+
+  fun drawSlot(pGui: Gui, pPosX: Int, pPosY: Int, pGuiX: Int, pGuiY: Int, args: Map<String, Any> = ImmutableMap.of())
 }

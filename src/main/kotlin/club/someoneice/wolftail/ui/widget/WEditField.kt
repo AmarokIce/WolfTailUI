@@ -10,7 +10,7 @@ import org.lwjgl.input.Keyboard
 
 open class WEditField(
   private val pos: UIPos,
-  private val offset: Pair<Int, Int> = 2 to 2,
+  protected val offset: Pair<Int, Int> = 2 to 2,
   private val style: IStyle
 ) : IWidget, IMouseEventListener, IKeyboardEventListener {
   constructor(
@@ -68,7 +68,7 @@ open class WEditField(
     this.isOn = true
   }
 
-  override fun onMousePressed(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
+  override fun onMouseReleased(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
     this.isOn = false
   }
 }

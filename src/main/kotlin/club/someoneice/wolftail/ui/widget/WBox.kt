@@ -12,12 +12,18 @@ import net.minecraft.client.gui.Gui
 
 open class WBox(
   private val pos: UIPos,
-  private val style: IStyle = StyleAdapter.EMPTY_STYLE
+  private val style: IStyle = StyleAdapter.INSTANCE
 ): IWidget, IMouseEventListener, IKeyboardEventListener {
-  private val child = Lists.newArrayList<IWidget>()
+  protected val child: ArrayList<IWidget> = Lists.newArrayList()
 
   fun addChild(child: IWidget): WBox {
     val cpos = child.weightPos()
+
+    if (pos.w == -1 || pos.h == -1) {
+      this.child.add(child)
+      return this
+    }
+
     if (cpos.x + cpos.w > this.pos.h || cpos.y + cpos.w > this.pos.h) {
       WolfTailUI.LOG.warn("Child widget failed added to box because it too large to the box!")
       return this

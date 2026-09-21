@@ -3,7 +3,6 @@ package club.someoneice.wolftail.ui.widget
 import club.someoneice.wolftail.api.IMouseEventListener
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
-import club.someoneice.wolftail.api.style.StyleAdapter
 import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.Lists
 import net.minecraft.client.Minecraft
@@ -11,26 +10,31 @@ import net.minecraft.client.gui.Gui
 import net.minecraft.client.gui.ScaledResolution
 import org.lwjgl.opengl.GL11
 
-class WScrollContainer(
-  val x: Int,
-  val y: Int,
-  val width: Int,
-  val height: Int,
-  val drawBackground: Boolean = true
+open class WScrollList(
+  private val pos: UIPos,
+  private val style: IStyle
 ) : IWidget, IMouseEventListener {
-  private val children = Lists.newArrayList<IWidget>()
-  private var contentHeight = 0
+  constructor(
+    x: Int,
+    y: Int,
+    width: Int,
+    height: Int,
+    style: IStyle
+  ): this(UIPos(x, y, width, height), style)
+  protected val children: MutableList<IWidget> = Lists.newArrayList()
+  protected var contentHeight = 0
+
   var scrollAmount = 0f
     private set
 
-  fun addChild(child: IWidget): WScrollContainer {
-    children.add(child)
+  fun addChild(child: IWidget): WScrollList {
+    this.children.add(child)
     recalculateHeight()
     return this
   }
 
-  fun removeChild(child: IWidget): WScrollContainer {
-    children.remove(child)
+  fun removeChild(child: IWidget): WScrollList {
+    this.children.remove(child)
     recalculateHeight()
     return this
   }
@@ -39,33 +43,34 @@ class WScrollContainer(
     contentHeight = children.sumOf { it.weightPos().h }
   }
 
-  override fun weightPos(): UIPos {
-    return UIPos(this.x, this.y, this.width, this.height)
-  }
+  override fun weightPos(): UIPos = this.pos
+  override fun getStyle(): IStyle = this.style
 
   override fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
-    val rX = this.x + pGuiX
-    val rY = this.y + pGuiY
+    val rX = this.pos.x + pGuiX
+    val rY = this.pos.y + pGuiY
 
-    val maxScroll = 0.coerceAtLeast(contentHeight - height)
+    val maxScroll = 0.coerceAtLeast(contentHeight - pos.h)
     scrollAmount = scrollAmount.coerceIn(0f, maxScroll.toFloat())
 
-    if (drawBackground) {
-      val color = 0x80000000.toInt()
-      Gui.drawRect(
-        rX, rY,
-        rX + width, rY + height,
-        color
-      )
-    }
+    // FIXME - UI Style
+    this.style.render(pGui, this.pos, pGuiX, pGuiY)
+//    if (drawBackground) {
+//      val color = 0x80000000.toInt()
+//      Gui.drawRect(
+//        rX, rY,
+//        rX + pos.w, rY + pos.h,
+//        color
+//      )
+//    }
 
     GL11.glEnable(GL11.GL_SCISSOR_TEST)
-    applyScissor(Minecraft.getMinecraft(), rX, rY, width, height)
+    applyScissor(Minecraft.getMinecraft(), rX, rY, pos.w, pos.h)
 
     var currentY = rY - scrollAmount.toInt()
     children.forEach {
       val h = it.weightPos().h
-      if (currentY + h >= rY && currentY <= rY + height) {
+      if (currentY + h >= rY && currentY <= rY + pos.h) {
         it.render(pGui, pMouseX, pMouseY, rX, currentY)
       }
 
@@ -75,11 +80,8 @@ class WScrollContainer(
     GL11.glDisable(GL11.GL_SCISSOR_TEST)
   }
 
-  override fun getStyle(): IStyle = object : StyleAdapter() {
-  }
-
   override fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int, pMouseButton: Int) {
-    var currentY = y - scrollAmount.toInt()
+    var currentY = this.pos.y - scrollAmount.toInt()
     children.filterIsInstance<IMouseEventListener>()
       .filter(IMouseEventListener::canBeClick)
       .forEach {

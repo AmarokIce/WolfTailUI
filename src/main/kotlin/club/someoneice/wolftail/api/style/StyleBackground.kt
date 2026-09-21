@@ -32,8 +32,8 @@ class StyleBackground(
 
   override fun drawSlot(
     pGui: Gui,
-    x: Int,
-    y: Int,
+    x: Int, y: Int,
+    guiX: Int, guiY: Int,
     args: Map<String, Any>
   ) {
     this.slotRenderer(this, pGui, x, y, args)
@@ -54,6 +54,8 @@ class StyleBackground(
         slotRange.drawTexture(pGui, pX, pY)
       }
 
+
+    // TODO
     private fun defaultBackgroundRenderer(
       bgUpLeft: UIPos,
       bgUp: UIPos,

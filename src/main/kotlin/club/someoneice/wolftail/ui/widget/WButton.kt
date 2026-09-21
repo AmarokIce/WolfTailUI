@@ -7,10 +7,10 @@ import club.someoneice.wolftail.util.UIPos
 import net.minecraft.client.gui.Gui
 
 open class WButton(
-  private val title: String,
+  protected val title: String,
   private val pos: UIPos,
   private val style: IStyle,
-  private val clicked: () -> Unit = {}
+  protected val clicked: () -> Unit = {}
 ) : IWidget, IMouseEventListener {
   constructor(
     title: String, x: Int, y: Int, w: Int, h: Int, style: IStyle,
