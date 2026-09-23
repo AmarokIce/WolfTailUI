@@ -1,8 +1,5 @@
 package club.someoneice.wolftail.util
 
-import club.someoneice.wolftail.ui.GuiWToast.Companion.itemRenderer
-import club.someoneice.wolftail.ui.GuiWToast.Companion.mc
-import cpw.mods.fml.common.registry.GameRegistry
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import net.minecraft.client.renderer.RenderHelper
