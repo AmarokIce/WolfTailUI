@@ -1,7 +1,7 @@
 package club.someoneice.wolftail.api.style
 
-import club.someoneice.wolftail.ui.core.ResourceManager
 import club.someoneice.wolftail.util.UIPos
+import club.someoneice.wolftail.util.UtilGui
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
@@ -30,7 +30,7 @@ sealed class StyleImage: IStyleImage {
   ): StyleImage() {
     override fun render(pGui: Gui, rect: UIPos, pGuiX: Int, pGuiY: Int, args: Map<String, Any>) {
       GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f)
-      ResourceManager.drawImageWithoutResource(rect.x + pGuiX, rect.y + pGuiY, img)
+      UtilGui.drawImageWithoutResource(rect.x + pGuiX, rect.y + pGuiY, img)
     }
   }
 }
