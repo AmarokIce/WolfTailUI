@@ -1,6 +1,6 @@
 package club.someoneice.wolftail.debug
 
-import club.someoneice.wolftail.api.style.IDataTreeStyle
+import club.someoneice.wolftail.api.style.IStyleDataTree
 import club.someoneice.wolftail.api.style.IStyleUI
 import club.someoneice.wolftail.ui.core.WScreen
 import club.someoneice.wolftail.ui.widget.WDataTree
@@ -16,7 +16,7 @@ class DebugGUI: WScreen(196, 168) {
 //        .addChild(WString("Mutton", 5, 5, hasShadow = false, hasHighlight = true))
 //    )
     this.addWidget(
-      WDataTree(UIPos(10, 10, 180, 160), IDataTreeStyle.INSTANCE, 600 to 600)
+      WDataTree(UIPos(10, 10, 180, 160), IStyleDataTree.INSTANCE, 600 to 600)
         .addChild(WString("Pineapple", 5, 5, hasHighlight = true))
         .addChild(WString("Pineapple", 5, 40, hasHighlight = true), 0)
         .addChild(WString("Pineapple", 40, 80, hasHighlight = true), 1)

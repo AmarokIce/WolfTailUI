@@ -7,11 +7,18 @@ import net.minecraft.client.gui.Gui
 import net.minecraft.util.ResourceLocation
 import java.awt.Color
 
-interface IDataTreeStyle: IStyle {
+interface IStyleDataTree: IStyle {
   companion object {
-    val INSTANCE = object: IDataTreeStyle {
+    val INSTANCE = object: IStyleDataTree {
       override fun getTexture(): ResourceLocation? = null
       override fun render(pGui: Gui, rect: UIPos, pGuiX: Int, pGuiY: Int, args: Map<String, Any>) {
+      }
+    }
+
+    fun fromStyle(style: IStyle): IStyleDataTree = object: IStyleDataTree {
+      override fun getTexture(): ResourceLocation? = style.getTexture()
+      override fun render(pGui: Gui, rect: UIPos, pGuiX: Int, pGuiY: Int, args: Map<String, Any>) {
+        style.render(pGui, rect, pGuiX, pGuiY, args)
       }
     }
   }

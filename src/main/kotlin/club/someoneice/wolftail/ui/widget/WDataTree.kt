@@ -3,7 +3,7 @@ package club.someoneice.wolftail.ui.widget
 import club.someoneice.wolftail.api.IMouseEventListener
 import club.someoneice.wolftail.api.IStyle
 import club.someoneice.wolftail.api.IWidget
-import club.someoneice.wolftail.api.style.IDataTreeStyle
+import club.someoneice.wolftail.api.style.IStyleDataTree
 import club.someoneice.wolftail.util.UIPos
 import com.google.common.collect.ImmutableSet
 import com.google.common.collect.Lists
@@ -16,7 +16,7 @@ import java.util.*
 
 open class WDataTree(
   private val pos: UIPos,
-  private val style: IDataTreeStyle,
+  private val style: IStyleDataTree,
   protected val canvasSize: Pair<Int, Int>,
   protected val lineColor: Color = Color.WHITE
 ): IWidget, IMouseEventListener {
