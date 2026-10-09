@@ -1,11 +1,9 @@
 package club.someoneice.wolftail.debug
 
-import club.someoneice.wolftail.api.style.IStyleDataTree
 import club.someoneice.wolftail.api.style.IStyleUI
+import club.someoneice.wolftail.api.style.StyleAdapter
 import club.someoneice.wolftail.ui.core.WScreen
-import club.someoneice.wolftail.ui.widget.WDataTree
-import club.someoneice.wolftail.ui.widget.WString
-import club.someoneice.wolftail.util.UIPos
+import club.someoneice.wolftail.ui.widget.WEditField
 
 class DebugGUI: WScreen(196, 168) {
   override fun initWidgets() {
@@ -16,12 +14,7 @@ class DebugGUI: WScreen(196, 168) {
 //        .addChild(WString("Mutton", 5, 5, hasShadow = false, hasHighlight = true))
 //    )
     this.addWidget(
-      WDataTree(UIPos(10, 10, 180, 160), IStyleDataTree.INSTANCE, 600 to 600)
-        .addChild(WString("Pineapple", 5, 5, hasHighlight = true))
-        .addChild(WString("Pineapple", 5, 40, hasHighlight = true), 0)
-        .addChild(WString("Pineapple", 40, 80, hasHighlight = true), 1)
-        .addChild(WString("Pineapple", 90, 120, hasHighlight = true))
-    )
+      WEditField(60, 60, 80, 20, 2, 2, StyleAdapter.INSTANCE))
   }
 
   override fun render(mouseX: Int, mouseY: Int, partialTicks: Float) {

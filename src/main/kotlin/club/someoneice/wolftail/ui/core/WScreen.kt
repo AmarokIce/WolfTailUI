@@ -95,9 +95,12 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
     val mouseEvent = this.mouseEventWidgets
       .filter(IMouseEventListener::canBeClick)
 
-    mouseEvent.firstOrNull {
-      it.isInRange(pMouseX, pMouseY, x, y)
-    }?.let {
+    mouseEvent.forEach {
+      if (it.isInRange(pMouseX, pMouseY, x, y)) {
+        it.onMouseClickedOutside(this, pMouseX, pMouseY, x, y, pMouseKeyInput)
+        return@forEach
+      }
+
       it.onMouseClicked(this, pMouseX, pMouseY,x , y, pMouseKeyInput)
       this.inMouseWidget = it
     }
@@ -125,7 +128,7 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
 
     val x: Int = if (this.w == -1) 0 else (this.width - this.w) / 2
     val y: Int = if (this.h == -1) 0 else (this.height - this.h) / 2
-    this.inMouseWidget!!.onMouseMove(this, pMouseX, pMouseY)
+    this.inMouseWidget!!.onMouseMove(this, pMouseX, pMouseY, x, y, pMouseButton)
   }
 
   override fun keyTyped(char: Char, keyCode: Int) {

@@ -130,7 +130,7 @@ open class WDataTree(
     this.lastMouseY = pMouseY
   }
 
-  override fun onMouseMove(pGui: Gui, pMouseX: Int, pMouseY: Int) {
+  override fun onMouseMove(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int, pMouseButton: Int) {
     val dx = pMouseX - this.lastMouseX
     val dy = pMouseY - this.lastMouseY
     this.offsetX += dx

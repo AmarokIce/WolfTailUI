@@ -10,5 +10,8 @@ interface IMouseEventListener: IWidget {
   fun onMouseReleased(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
   }
 
-  fun onMouseMove(pGui: Gui, pMouseX: Int, pMouseY: Int) {}
+  fun onMouseClickedOutside(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int, pMouseButton: Int) {
+  }
+
+  fun onMouseMove(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int, pMouseButton: Int) {}
 }
