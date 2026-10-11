@@ -21,7 +21,7 @@ open class WButton(
   override fun getStyle(): IStyle = this.style
 
   override fun onMouseClicked(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int, pMouseButton: Int) {
-    clicked()
+    this.clicked()
   }
 
   override fun render(pGui: Gui, pMouseX: Int, pMouseY: Int, pGuiX: Int, pGuiY: Int) {
@@ -29,6 +29,7 @@ open class WButton(
 
     this.style.render(pGui, this.weightPos(), pGuiX, pGuiY,
       mapOf(
+        "canUse" to this.canBeClick(),
         "highlight" to highlight,
         "title" to title
       ))

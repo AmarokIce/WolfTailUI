@@ -96,7 +96,7 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
       .filter(IMouseEventListener::canBeClick)
 
     mouseEvent.forEach {
-      if (it.isInRange(pMouseX, pMouseY, x, y)) {
+      if (!it.isInRange(pMouseX, pMouseY, x, y)) {
         it.onMouseClickedOutside(this, pMouseX, pMouseY, x, y, pMouseKeyInput)
         return@forEach
       }
@@ -142,6 +142,12 @@ abstract class WScreen(val w: Int, val h: Int): GuiScreen() {
   }
 
   override fun initGui() {
+    this.widgets.clear()
+    this.mouseEventWidgets.clear()
+    this.keyboardEventWidgets.clear()
+    this.scrollWidget.clear()
+    this.inMouseWidget = null
+
     this.initWidgets()
   }
 }

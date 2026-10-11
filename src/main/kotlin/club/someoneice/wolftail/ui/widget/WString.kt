@@ -12,7 +12,7 @@ open class WString(
   protected val title: String,
   protected val x: Int,
   protected val y: Int,
-  private val style: IStyle = StyleFont.INSTANCE,
+  private val style: StyleFont = StyleFont.INSTANCE,
   protected val hasHighlight: Boolean = false
 ) : IWidget {
   constructor(
@@ -27,7 +27,7 @@ open class WString(
     hasHighlight: Boolean = false
   ) : this(
     title, x, y,
-    StyleFont(color, highlightColor, hasShadow, shadowColor, highlightShadowColor), hasShadow
+    StyleFont(color, highlightColor, hasShadow, shadowColor, highlightShadowColor), hasHighlight
   )
 
   constructor(

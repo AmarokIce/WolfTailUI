@@ -63,7 +63,7 @@ object UtilGui {
   @JvmStatic
   fun fill(x: Int, y: Int, w: Int, h: Int, color: Int) {
     for(i in 0 ..< h) {
-      Gui.drawRect(x, y + i, x + w, y + h + i, color)
+      Gui.drawRect(x, y + i, x + w, y + i + 1, color)
     }
   }
 
